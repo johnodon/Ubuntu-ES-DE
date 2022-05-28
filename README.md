@@ -6,7 +6,7 @@ Script to automate the installation on EmulationStation Desktop Edition (https:/
   - Disables sudo password prompts
   - Installs the minimal OS dependecies needed to install OpenBox and run ES-DE
   - Downloads the ES-DE Appimage and makes it executable
-  - Enables autologin and boots directly into OpenBox / ES-DE
+  - Boots directly into OpenBox / ES-DE
 
 
 # Installing the Base OS
@@ -16,6 +16,7 @@ Script to automate the installation on EmulationStation Desktop Edition (https:/
       - Language: your choice
       - Keyboard: your choice
       - Partition Scheme: entire disk (preferred, not required)
+      - Timezone: your choice
       - Hostname: your choice
       - Username: your choice
       - Password: your choice
@@ -24,7 +25,7 @@ Script to automate the installation on EmulationStation Desktop Edition (https:/
 
 # Running the ES-DE install script...
   - Log in as the user you chose
-  - Open a terminal and download the install script, make it executable and run it
+  - Open a terminal, download the install script, make it executable and run it
       - `wget -q https://github.com/johnodon/Ubuntu-ES-DE/blob/main/Ubuntu-ES-DE.sh && chmod +x Ubuntu-ES-DE.sh && sudo bash ./Ubuntu-ES-DE.sh`
       - You will need to provide the password for the user
 
