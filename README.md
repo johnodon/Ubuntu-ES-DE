@@ -25,8 +25,8 @@ Installing the Base OS
 Running the ES-DE install script...
   - Log in as the user you chose
   - Open a terminal and download the install script
-      - wget -q https://github.com/johnodon/Ubuntu-ES-DE/edit/main/README.md
+      - `wget -q https://github.com/johnodon/Ubuntu-ES-DE/edit/main/README.md`
   - Run the install script
-      - sudo bash ./Ubuntu-ES-DE.sh
+      - `sudo bash ./Ubuntu-ES-DE.sh`
       - You will need to provide the password for the user
 
