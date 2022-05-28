@@ -26,6 +26,6 @@ Script to automate the installation on EmulationStation Desktop Edition (https:/
 # Running the ES-DE install script...
   - Log in as the user you chose
   - Open a terminal, download the install script, make it executable and run it
-      - `wget https://raw.githubusercontent.com/johnodon/Ubuntu-ES-DE/main/Ubuntu-ES-DE.sh && chmod +x Ubuntu-ES-DE.sh && sudo ./Ubuntu-ES-DE.sh`
+      - `wget https://raw.githubusercontent.com/johnodon/Ubuntu-ES-DE/main/Ubuntu-ES-DE.sh && chmod +x Ubuntu-ES-DE.sh && ./Ubuntu-ES-DE.sh`
       - You will need to provide the password for the user
 
