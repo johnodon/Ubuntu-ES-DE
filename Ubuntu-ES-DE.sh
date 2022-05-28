@@ -6,4 +6,4 @@ sudo apt install openbox obconf git dialog unzip xmlstarlet samba mpv dos2unix m
 wget -O EmulationStation-DE-x64_Current.AppImage  https://gitlab.com/es-de/emulationstation-de/-/package_files/40176633/download
 chmod +x EmulationStation-DE-x64_Current.AppImage
 sudo add-apt-repository ppa:libretro/stable -y && sudo apt-get update && sudo apt-get install retroarch -y
-mkdir ~/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage --no-splash" > ~/.config/openbox/autostart
+mkdir /home/$USER/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage --no-splash" > /home/$USER/.config/openbox/autostart
