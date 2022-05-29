@@ -18,7 +18,7 @@ function update_upgrade() {
     echo "--------------------------------------------------------------------------------"
     echo "| Updating OS with latest packages"
     echo "--------------------------------------------------------------------------------"
-    apt update -y && sudo apt upgrade -y
+    apt update -y && apt upgrade -y
     echo -e "FINISHED update_upgrade \n\n"
     sleep 2
 }
@@ -74,7 +74,7 @@ function install_retroarch() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing RetroArch"
     echo "--------------------------------------------------------------------------------"
-    add-apt-repository ppa:libretro/stable -y && apt update && sudo apt install retroarch -y
+    add-apt-repository ppa:libretro/stable -y && apt update && apt install retroarch -y
     echo -e "FINISHED install_retroarch \n\n"
 }
 
