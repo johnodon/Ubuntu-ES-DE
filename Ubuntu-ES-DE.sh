@@ -39,6 +39,21 @@ function enable_logging() {
 #################################################################### END PREFLIGHT SECTION ####################################################################
 
 
+############################################################# START OPTIONALPACKAGES MENU SECTION #############################################################
+
+# Menu to present optional packages
+function select_options() {
+#resize -s 40 90 > /dev/null #Change window size.
+OPTIONS=$(dialog --separate-output --no-tags --clear --backtitle "Additional Package Options..." --title "Optional Packages" \
+    --checklist "Use SPACE to select/deselct options and OK when finished."  30 100 30 \
+       install_extra_tools "Install extra tools" off \
+       install_hypseus_singe "Install Hypseus-Singe emulator" off \
+       install_retroarch "Install RetroArch" off \
+}
+
+############################################################## END OPTIONALPACKAGES MENU SECTION ##############################################################
+
+
 ############################################################### START BASE INSTALLATION SECTION ###############################################################
 
 # Create file in sudoers.d directory and disable password prompt
