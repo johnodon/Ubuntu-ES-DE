@@ -14,7 +14,6 @@ echo "**************************************************************************
 echo "* Installing dependencies                                                      *"
 echo "********************************************************************************"
 sudo apt install openbox obconf unzip xmlstarlet scrot openssh-server fuse --no-install-recommends -y
-#sudo apt install mc thunar mpv samba dos2unix git dialog --no-install-recommends -y
 
 echo "********************************************************************************"
 echo "* Downloading ES-DE AppImage                                                   *"
