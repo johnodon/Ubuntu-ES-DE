@@ -27,10 +27,5 @@ echo "**************************************************************************
 mkdir -p /home/$USER/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage --no-splash" > /home/$USER/.config/openbox/autostart
 
 echo "********************************************************************************"
-echo "* Installing RetroArch                                                         *"
-echo "********************************************************************************"
-sudo add-apt-repository ppa:libretro/stable -y && sudo apt-get update && sudo apt-get install retroarch -y
-
-echo "********************************************************************************"
 echo "* Installtion complete                                                         *"
 echo "********************************************************************************"
