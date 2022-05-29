@@ -15,7 +15,7 @@ echo "* Installing dependencies                                                 
 echo "********************************************************************************"
 sudo apt install openbox obconf unzip xmlstarlet scrot openssh-server fuse --no-install-recommends -y   # Hard dependencies
 #sudo apt install mc thunar mpv samba dos2unix git dialog --no-install-recommends -y  # Uncomment to install additional tools
-#sudo apt install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev libsdl2-image-dev autotools-dev --no-install-recommends -y    # uncomment this line if you plan to compile hypseus
+#sudo apt install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev libsdl2-image-dev autotools-dev libtool --no-install-recommends -y    # uncomment this line if you plan to compile hypseus
 
 echo "********************************************************************************"
 echo "* Downloading ES-DE AppImage                                                   *"
