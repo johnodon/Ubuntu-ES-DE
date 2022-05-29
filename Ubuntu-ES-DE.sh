@@ -1,5 +1,7 @@
 #! /bin/bash
 
+############################################################### START BASE INSTALLATION SECTION ###############################################################
+
 # Create file in sudoers.d directory and disable password prompt
 function disable_sudo_password() {
     echo "--------------------------------------------------------------------------------"
@@ -41,7 +43,8 @@ function install_esde() {
     chown $USER:$USER ~/EmulationStation-DE-x64_Current.AppImage
     chmod +x EmulationStation-DE-x64_Current.AppImage
     echo -e "FINISHED install_esde \n\n"
- 
+}
+
 # Configure Openbox to autostart ES-DE
 function configure_openbox() {
     echo "--------------------------------------------------------------------------------"
@@ -50,25 +53,65 @@ function configure_openbox() {
     mkdir -p /home/$USER/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage --no-splash" > /home/$USER/.config/openbox/autostart
     chown -R $USER:$USER /home/$USER/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
+}
 
-echo "********************************************************************************"
-echo "* Installtion complete                                                         *"
-echo "********************************************************************************"
-
+############################################################### END BASE INSTALLATION SECTION ###############################################################
 
 
-### Base Installation ###
-function base-installation() {
+######################################################## START OPTIONAL PACKAGE INSTALLATION SECTION ########################################################
+
+# Install Extra Tools
+function install_extra_tools() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing extra tools"
+    echo "--------------------------------------------------------------------------------"
+    apt install mc thunar mpv samba dos2unix git dialog --no-install-recommends -y
+    echo -e "FINISHED install_extra_tools \n\n"
+}
+
+# Install RetroArch
+function install_retroarch() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing RetroArch"
+    echo "--------------------------------------------------------------------------------"
+    add-apt-repository ppa:libretro/stable -y && apt update && sudo apt install retroarch -y
+    echo -e "FINISHED install_retroarch \n\n"
+}
+
+# Install Hypseus-Singe
+function install_hypseus_singe() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing Hypseus-Singe"
+    echo "--------------------------------------------------------------------------------"
+    cd ~
+    apt install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev libsdl2-image-dev autotools-dev libtool --no-install-recommends -y
+    git clone https://github.com/DirtBagXon/hypseus-singe.git
+    cd hypseus-singe/src
+    cmake .
+    make -j
+    mkdir -p ~/Applications/hypseus-singe
+    cp -r ../fonts ~/Applications/hypseus-singe
+    cp -r ../roms ~/Applications/hypseus-singe
+    cp -r ../sound ~/Applications/hypseus-singe
+    cp -r ../pics ~/Applications/hypseus-singe
+    cp hypseus ~/Applications/hypseus-singe/hypseus.bin
+    echo -e "FINISHED install_hypseus_singe \n\n"
+}
+
+######################################################## START OPTIONAL PACKAGE INSTALLATION SECTION ########################################################
+
+
+### Base Installation Functions ###
+function base_installation() {
     disable_sudo_password
     update_upgrade
     install_dependencies
     install_esde
     configure_openbox
-    install_esde
 }
 
 
-### Optional Packages Installation ###
+### Optional Packages Installation Functions ###
 function optional_packages() {
     select_options
     for SELECTION in $OPTIONS; do
@@ -85,3 +128,7 @@ function optional_packages() {
     esac
     done
 }
+
+echo "********************************************************************************"
+echo "* Installtion complete"
+echo "********************************************************************************"
