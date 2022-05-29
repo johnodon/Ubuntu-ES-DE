@@ -3,7 +3,7 @@
 echo "********************************************************************************"
 echo "* Disabling sudo password prompt for current user                              *"
 echo "********************************************************************************"
-sudo echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/dont-prompt-$USER-for-sudo-password"   # disables prompts for password for sudo
+sudo echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/dont-prompt-$USER-for-sudo-password"
 
 echo "********************************************************************************"
 echo "* Updating/Upgrading                                                           *"
@@ -13,9 +13,8 @@ sudo apt update -y && sudo apt upgrade -y
 echo "********************************************************************************"
 echo "* Installing dependencies                                                      *"
 echo "********************************************************************************"
-sudo apt install openbox obconf unzip xmlstarlet scrot openssh-server fuse --no-install-recommends -y   # Hard dependencies
-#sudo apt install mc thunar mpv samba dos2unix git dialog --no-install-recommends -y  # Uncomment to install additional tools
-#sudo apt install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev libsdl2-image-dev autotools-dev libtool --no-install-recommends -y    # uncomment this line if you plan to compile hypseus
+sudo apt install openbox obconf unzip xmlstarlet scrot openssh-server fuse --no-install-recommends -y
+#sudo apt install mc thunar mpv samba dos2unix git dialog --no-install-recommends -y
 
 echo "********************************************************************************"
 echo "* Downloading ES-DE AppImage                                                   *"
