@@ -22,14 +22,14 @@ wget -O EmulationStation-DE-x64_Current.AppImage  https://gitlab.com/es-de/emula
 chmod +x EmulationStation-DE-x64_Current.AppImage
 
 echo "********************************************************************************"
-echo "* Installing RetroArch                                                         *"
-echo "********************************************************************************"
-sudo add-apt-repository ppa:libretro/stable -y && sudo apt-get update && sudo apt-get install retroarch -y
-
-echo "********************************************************************************"
 echo "* Configuring Openbox session to autostart ES-DE                               *"
 echo "********************************************************************************"
 mkdir -p /home/$USER/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage --no-splash" > /home/$USER/.config/openbox/autostart
+
+echo "********************************************************************************"
+echo "* Installing RetroArch                                                         *"
+echo "********************************************************************************"
+sudo add-apt-repository ppa:libretro/stable -y && sudo apt-get update && sudo apt-get install retroarch -y
 
 echo "********************************************************************************"
 echo "* Installtion complete                                                         *"
