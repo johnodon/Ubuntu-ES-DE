@@ -1,5 +1,44 @@
 #! /bin/bash
 
+# Computed variables
+USER="$SUDO_USER"
+USER_HOME="/home/$USER"
+SCRIPT_PATH="$(realpath $0)"
+SCRIPT_DIR="$(dirname $SCRIPT_PATH)"
+SCRIPT_FILE="$(basename $SCRIPT_PATH)"
+LOG_FILE="$SCRIPT_DIR/$(basename $0 .sh)-$(date +"%Y%m%d_%H%M%S").log"
+
+################################################################### START PREFLIGHT SECTION ###################################################################
+
+# Make sure the user is running the script via sudo
+function check_perms() {
+echo "--------------------------------------------------------------------------------"
+echo "| Checking permissions..."
+echo "--------------------------------------------------------------------------------"
+if [ -z "$SUDO_USER" ]; then
+    echo "Installing Ubuntu-ES-DE requires sudo privileges. Please run with: sudo $0"
+    exit 1
+fi
+# Don't allow the user to run this script from the root account.
+if [[ "$SUDO_USER" == root ]]; then
+    echo "Ubuntu-ES-DE should not be installed by the root user.  Please run as normal user using sudo."
+    exit 1
+fi
+}
+
+# Output to both console and log file
+function enable_logging() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Saving console output to '$LOG_FILE'"
+    echo "--------------------------------------------------------------------------------"
+    touch $LOG_FILE
+    exec > >(tee $LOG_FILE) 2>&1
+    sleep 2
+}
+
+#################################################################### END PREFLIGHT SECTION ####################################################################
+
+
 ############################################################### START BASE INSTALLATION SECTION ###############################################################
 
 # Create file in sudoers.d directory and disable password prompt
@@ -99,6 +138,12 @@ function install_hypseus_singe() {
 }
 
 ######################################################## START OPTIONAL PACKAGE INSTALLATION SECTION ########################################################
+
+### Preflight Functions ###
+function preflight() {
+    check_perms
+    enable_logging
+}
 
 
 ### Base Installation Functions ###
