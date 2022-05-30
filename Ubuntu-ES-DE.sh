@@ -44,11 +44,8 @@ function enable_logging() {
 # Menu to present optional packages
 function select_options() {
 #resize -s 40 90 > /dev/null #Change window size.
-OPTIONS=$(dialog --separate-output --no-tags --clear --backtitle "Additional Package Options..." --title "Optional Packages" \
-    --checklist "Use SPACE to select/deselct options and OK when finished."  30 100 30 \
-       install_extra_tools "Install extra tools" off \
-       install_hypseus_singe "Install Hypseus-Singe emulator" off \
-       install_retroarch "Install RetroArch" off \
+#whiptail --checklist --notags "Please pick one" 10 35 3 install_extra_tools "Install extra tools" off install_retroarch "Install RetroArch" off install_hypeseus_singe "Install Hypseus-Singe" off
+PACKAGES=$(dialog --no-tags --clear --backtitle "Additional Package Options..." --title "Optional Packages" --checklist "Use SPACE to select/deselct options and OK when finished." 30 100 30 install_extra_tools "Install extra tools" off install_hypseus_singe "Install Hypseus-Singe emulator" off install_retroarch "Install RetroArch" off 3>&1 1>&2 2>&3)
 }
 
 ############################################################## END OPTIONALPACKAGES MENU SECTION ##############################################################
@@ -152,7 +149,7 @@ function install_hypseus_singe() {
     echo -e "FINISHED install_hypseus_singe \n\n"
 }
 
-######################################################## START OPTIONAL PACKAGE INSTALLATION SECTION ########################################################
+######################################################### END OPTIONAL PACKAGE INSTALLATION SECTION #########################################################
 
 ### Preflight Functions ###
 function preflight() {
@@ -174,7 +171,7 @@ function base_installation() {
 ### Optional Packages Installation Functions ###
 function optional_packages() {
     select_options
-    for SELECTION in $OPTIONS; do
+    for SELECTION in $PACKAGES; do
     case $SELECTION in
     install_extra_tools)
         install_extra_tools
@@ -188,6 +185,8 @@ function optional_packages() {
     esac
     done
 }
+preflight
+optional_packages
 
 echo "********************************************************************************"
 echo "* Installtion complete"
