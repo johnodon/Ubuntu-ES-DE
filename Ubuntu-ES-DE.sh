@@ -11,7 +11,7 @@ LOG_FILE="$SCRIPT_DIR/$(basename $0 .sh)-$(date +"%Y%m%d_%H%M%S").log"
 ################################################################### START PREFLIGHT SECTION ###################################################################
 
 # Make sure the user is running the script via sudo
-function check_perms() {
+check_perms() {
 echo "--------------------------------------------------------------------------------"
 echo "| Checking permissions..."
 echo "--------------------------------------------------------------------------------"
@@ -27,7 +27,7 @@ fi
 }
 
 # Output to both console and log file
-function enable_logging() {
+enable_logging() {
     echo "--------------------------------------------------------------------------------"
     echo "| Saving console output to '$LOG_FILE'"
     echo "--------------------------------------------------------------------------------"
@@ -55,7 +55,7 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Additional Package Options..." 
 ############################################################### START BASE INSTALLATION SECTION ###############################################################
 
 # Create file in sudoers.d directory and disable password prompt
-function disable_sudo_password() {
+disable_sudo_password() {
     echo "--------------------------------------------------------------------------------"
     echo "| Disabling the sudo password prompt"
     echo "--------------------------------------------------------------------------------"
@@ -66,7 +66,7 @@ function disable_sudo_password() {
 }
 
 # Update OS with latest packages
-function update_upgrade() {
+update_upgrade() {
     echo "--------------------------------------------------------------------------------"
     echo "| Updating OS with latest packages"
     echo "--------------------------------------------------------------------------------"
@@ -76,7 +76,7 @@ function update_upgrade() {
 }
 
 # Install dependencies
-function install_dependencies() {
+install_dependencies() {
     echo "--------------------------------------------------------------------------------"
     echo "| Updating OS with latest packages"
     echo "--------------------------------------------------------------------------------"
@@ -86,7 +86,7 @@ function install_dependencies() {
 }
 
 # Install EmulationStation Desktop Edition
-function install_esde() {
+install_esde() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing EmulationStation Desktop Edition"
     echo "--------------------------------------------------------------------------------"
@@ -98,7 +98,7 @@ function install_esde() {
 }
 
 # Configure Openbox to autostart ES-DE
-function configure_openbox() {
+configure_openbox() {
     echo "--------------------------------------------------------------------------------"
     echo "| Configuring Openbox to autostart ES-DE"
     echo "--------------------------------------------------------------------------------"
@@ -113,7 +113,7 @@ function configure_openbox() {
 ######################################################## START OPTIONAL PACKAGE INSTALLATION SECTION ########################################################
 
 # Install Extra Tools
-function install_extra_tools() {
+install_extra_tools() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing extra tools"
     echo "--------------------------------------------------------------------------------"
@@ -122,7 +122,7 @@ function install_extra_tools() {
 }
 
 # Install RetroArch
-function install_retroarch() {
+install_retroarch() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing RetroArch"
     echo "--------------------------------------------------------------------------------"
@@ -131,7 +131,7 @@ function install_retroarch() {
 }
 
 # Install Hypseus-Singe
-function install_hypseus_singe() {
+install_hypseus_singe() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing Hypseus-Singe"
     echo "--------------------------------------------------------------------------------"
@@ -153,14 +153,14 @@ function install_hypseus_singe() {
 ######################################################### END OPTIONAL PACKAGE INSTALLATION SECTION #########################################################
 
 ### Preflight Functions ###
-function preflight() {
+preflight() {
     check_perms
-    enable_logging
+    #enable_logging
 }
 
 
 ### Base Installation Functions ###
-function base_installation() {
+base_installation() {
     disable_sudo_password
     update_upgrade
     install_dependencies
@@ -170,7 +170,7 @@ function base_installation() {
 
 
 ### Optional Packages Installation Functions ###
-function optional_packages() {
+optional_packages() {
     select_options
     for SELECTION in $PACKAGES; do
     case $SELECTION in
