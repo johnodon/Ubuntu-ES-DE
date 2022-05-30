@@ -36,8 +36,8 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     install_nvidia_driver "Install latest Nvidia GPU driver" off \
     install_mesa "Install latest version of Mesa" off \
     install_extra_tools "Install extra tools" off \
-    install_hypseus_singe "Install Hypseus-Singe emulator" off \
     install_retroarch "Install RetroArch" off \
+    install_hypseus_singe "Install Hypseus-Singe emulator" off \
     3>&1 1>&2 2>&3)
 response=$?
 if [ "$response" == "1" ] ; then
@@ -139,11 +139,11 @@ package_selection() {
         install_extra_tools)
             install_extra_tools
             ;;
-        install_hypseus_singe)
-            install_hypseus_singe
-            ;;
         install_retroarch)
             install_retroarch
+            ;;
+        install_hypseus_singe)
+            install_hypseus_singe
             ;;
      esac
      done
