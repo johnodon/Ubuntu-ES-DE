@@ -26,7 +26,7 @@ if [[ "$SUDO_USER" == root ]]; then
 fi
 }
 
-# Output to both console and log file
+# Output to log file
 enable_logging() {
     echo "--------------------------------------------------------------------------------"
     echo "| Saving console output to '$LOG_FILE'"
@@ -41,12 +41,20 @@ enable_logging() {
 
 ############################################################# START OPTIONALPACKAGES MENU SECTION #############################################################
 
-# Menu to present optional packages
+# Main installation menu
 select_options() {
-PACKAGES=$(dialog --no-tags --clear --backtitle "Additional Package Options..." --title "Optional Packages" \
- --checklist "Use SPACE to select/deselct options and OK when finished." 30 100 30 install_extra_tools \
- "Install extra tools" off install_hypseus_singe "Install Hypseus-Singe emulator" off install_retroarch \
- "Install RetroArch" off 3>&1 1>&2 2>&3)
+PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Packages" \
+    --checklist "This script will install ES-DE and its dependencies even if no optional packages are selected. \
+    Use arrown keys to move up/down and SPACE to select/deselct optional packages. Select OK and press [ENTER] when finished.  \
+    Select CANCEL and press [ENTER] to terminate the script" 30 100 30 \
+    install_extra_tools "Install extra tools" off install_hypseus_singe "Install Hypseus-Singe emulator" off install_retroarch \
+    "Install RetroArch" off 3>&1 1>&2 2>&3)
+response=$?
+if [ "$response" == "1" ] ; then
+    clear
+    echo "Installation cancelled by user."
+    exit
+fi
 }
 
 ############################################################## END OPTIONALPACKAGES MENU SECTION ##############################################################
