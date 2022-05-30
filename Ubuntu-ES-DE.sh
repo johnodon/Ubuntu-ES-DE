@@ -100,10 +100,10 @@ install_esde() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing EmulationStation Desktop Edition"
     echo "--------------------------------------------------------------------------------"
-    cd ~
+    cd $USER_HOME
     wget -O $USER_HOME/EmulationStation-DE-x64_Current.AppImage  https://gitlab.com/es-de/emulationstation-de/-/package_files/40176633/download
-    chown $USER:$USER ~/EmulationStation-DE-x64_Current.AppImage
-    chmod +x EmulationStation-DE-x64_Current.AppImage
+    chown $USER:$USER $USER_HOME/EmulationStation-DE-x64_Current.AppImage
+    chmod +x $USER_HOME/EmulationStation-DE-x64_Current.AppImage
     echo -e "FINISHED install_esde \n\n"
 }
 
@@ -112,8 +112,8 @@ configure_openbox() {
     echo "--------------------------------------------------------------------------------"
     echo "| Configuring Openbox to autostart ES-DE"
     echo "--------------------------------------------------------------------------------"
-    mkdir -p /home/$USER/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage --no-splash" > /home/$USER/.config/openbox/autostart
-    chown -R $USER:$USER /home/$USER/.config/openbox
+    mkdir -p $USER_HOME/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage --no-splash" > $USER_HOME/.config/openbox/autostart
+    chown -R $USER:$USER $USER_HOME/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
 }
 
@@ -203,19 +203,19 @@ install_hypseus_singe() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing Hypseus-Singe"
     echo "--------------------------------------------------------------------------------"
-    cd ~
+    cd $USER_HOME
     apt-get install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev \
     libsdl2-image-dev autotools-dev libtool --no-install-recommends -y
     git clone https://github.com/DirtBagXon/hypseus-singe.git
-    cd hypseus-singe/src
+    cd $USER_HOME/hypseus-singe/src
     cmake .
     make -j
-    mkdir -p ~/Applications/hypseus-singe
+    mkdir -p $USER_HOME/Applications/hypseus-singe
     cp -r ../fonts ~/Applications/hypseus-singe
     cp -r ../roms ~/Applications/hypseus-singe
     cp -r ../sound ~/Applications/hypseus-singe
     cp -r ../pics ~/Applications/hypseus-singe
-    cp hypseus ~/Applications/hypseus-singe/hypseus.bin
+    cp hypseus $USER_HOME/Applications/hypseus-singe/hypseus.bin
     echo -e "FINISHED install_hypseus_singe \n\n"
 }
 
