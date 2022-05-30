@@ -32,8 +32,13 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     --checklist "This script will install ES-DE and its dependencies even if no optional packages are selected. \
     Use arrown keys to move up/down and SPACE to select/deselct optional packages. Select OK and press [ENTER] when finished.  \
     Select CANCEL and press [ENTER] to terminate the script" 30 100 30 \
-    install_extra_tools "Install extra tools" off install_hypseus_singe "Install Hypseus-Singe emulator" off install_retroarch \
-    "Install RetroArch" off 3>&1 1>&2 2>&3)
+    install_intel_driver "Install latest Intel GPU driver" off \
+    install_nvidia_driver "Install latest Nvidia GPU driver" off \
+    install_mesa "Install latest version of Mesa" off \
+    install_extra_tools "Install extra tools" off \
+    install_hypseus_singe "Install Hypseus-Singe emulator" off \
+    install_retroarch "Install RetroArch" off \
+    3>&1 1>&2 2>&3)
 response=$?
 if [ "$response" == "1" ] ; then
     clear
@@ -122,6 +127,15 @@ configure_openbox() {
 package_selection() {
     for SELECTION in $PACKAGES; do
         case $SELECTION in
+        install_intel_driver)
+            install_intel_driver
+            ;;
+        install_nvidia_driver)
+            install_nvidia_driver
+            ;;
+        install_mesa)
+            install_mesa
+            ;;     
         install_extra_tools)
             install_extra_tools
             ;;
@@ -134,6 +148,37 @@ package_selection() {
      esac
      done
  }
+
+# Install latest Intel GPU driver
+install_intel_driver() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing latest Intel GPU driver"
+    echo "--------------------------------------------------------------------------------"
+    add-apt-repository -y ppa:ubuntu-x-swat/updates
+    apt-get update && apt-get -y upgrade
+    echo -e "FINISHED install_intel_driver \n\n"
+}
+
+# Install latest Nvidia GPU driver
+install_nvidia_driver() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing latest Nvidia GPU driver"
+    echo "--------------------------------------------------------------------------------"
+    apt-get install -y ubuntu-drivers-common
+    add-apt-repository -y ppa:graphics-drivers/ppa
+    ubuntu-drivers autoinstall
+    echo -e "FINISHED install_nvidia_driver \n\n"
+}
+
+# Install latest version of Mesa
+install_mesa() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing latest version of Mesa"
+    echo "--------------------------------------------------------------------------------"
+    add-apt-repository -y ppa:kisak/kisak-mesa
+    apt-get update && apt-get upgrade -y
+    echo -e "FINISHED install_mesa \n\n"
+}
 
 # Install Extra Tools
 install_extra_tools() {
