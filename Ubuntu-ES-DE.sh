@@ -33,7 +33,6 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     Select OK and press [ENTER] when finished. \
     Select CANCEL and press [ENTER] to terminate the script" 30 100 30 \
     initial_install "Perform initial install (do this only the first time)" on \
-    
     install_intel_driver "Install latest Intel GPU driver" off \
     install_nvidia_driver "Install latest Nvidia GPU driver" off \
     install_mesa "Install latest version of Mesa" off \
