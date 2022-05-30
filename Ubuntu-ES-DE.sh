@@ -205,7 +205,7 @@ install_hypseus_singe() {
     echo "--------------------------------------------------------------------------------"
     cd $USER_HOME
     apt-get install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev \
-    libsdl2-image-dev autotools-dev libtool --no-install-recommends -y
+    libsdl2-image-dev autotools-dev libtool automake --no-install-recommends -y
     git clone https://github.com/DirtBagXon/hypseus-singe.git
     cd $USER_HOME/hypseus-singe/src
     cmake .
