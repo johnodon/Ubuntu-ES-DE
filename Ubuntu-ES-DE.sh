@@ -27,7 +27,7 @@ fi
 }
 
 # Menu to present optional packages
-select_options() {
+main_menu() {
 PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Packages" \
     --checklist "This script will install ES-DE and its dependencies even if no optional packages are selected. \
     Use arrown keys to move up/down and SPACE to select/deselct optional packages. Select OK and press [ENTER] when finished.  \
@@ -118,22 +118,22 @@ configure_openbox() {
 
 ################################################################# START OPTIONAL INSTALLATION SECTION ##################################################################
 
-optional_packages() {
-    select_options
+# Readout package selections
+package_selection() {
     for SELECTION in $PACKAGES; do
-    case $SELECTION in
-    install_extra_tools)
-        install_extra_tools
-        ;;
-    install_hypseus_singe)
-        install_hypseus_singe
-        ;;
-    install_retroarch)
-        install_retroarch
-        ;;
-    esac
-    done
-}
+        case $SELECTION in
+        install_extra_tools)
+            install_extra_tools
+            ;;
+        install_hypseus_singe)
+            install_hypseus_singe
+            ;;
+        install_retroarch)
+            install_retroarch
+            ;;
+     esac
+     done
+ }
 
 # Install Extra Tools
 install_extra_tools() {
@@ -207,6 +207,7 @@ remove_unneeded_packages() {
 ### Preflight Functions ###
 preflight() {
     check_perms
+    main_menu
     enable_logging
 }
 
@@ -222,7 +223,7 @@ base_installation() {
 
 ### OPTIONAL Installation Functions ###
 optional_installation() {
-    optional_packages
+    package_selection
 }
 
 
