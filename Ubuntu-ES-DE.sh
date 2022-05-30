@@ -75,7 +75,7 @@ update_upgrade() {
     echo "--------------------------------------------------------------------------------"
     echo "| Updating OS with latest packages"
     echo "--------------------------------------------------------------------------------"
-    apt update -y && apt upgrade -y
+    apt-get update -y && apt-get upgrade -y
     echo -e "FINISHED update_upgrade \n\n"
     sleep 2
 }
@@ -85,7 +85,7 @@ install_dependencies() {
     echo "--------------------------------------------------------------------------------"
     echo "| Updating OS with latest packages"
     echo "--------------------------------------------------------------------------------"
-    apt install openbox obconf unzip xmlstarlet scrot openssh-server fuse --no-install-recommends -y
+    apt-get install openbox obconf unzip xmlstarlet scrot openssh-server fuse --no-install-recommends -y
     echo -e "FINISHED install_dependencies \n\n"
     sleep 2
 }
@@ -140,7 +140,7 @@ install_extra_tools() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing extra tools"
     echo "--------------------------------------------------------------------------------"
-    apt install mc thunar mpv samba dos2unix git dialog --no-install-recommends -y
+    apt-get install mc thunar mpv samba dos2unix git dialog --no-install-recommends -y
     echo -e "FINISHED install_extra_tools \n\n"
 }
 
@@ -149,7 +149,7 @@ install_retroarch() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing RetroArch"
     echo "--------------------------------------------------------------------------------"
-    add-apt-repository ppa:libretro/stable -y && apt update && apt install retroarch -y
+    add-apt-repository ppa:libretro/stable -y && apt-get update && apt-get install retroarch -y
     echo -e "FINISHED install_retroarch \n\n"
 }
 
@@ -159,7 +159,7 @@ install_hypseus_singe() {
     echo "| Installing Hypseus-Singe"
     echo "--------------------------------------------------------------------------------"
     cd ~
-    apt install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev \
+    apt-get install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev \
     libsdl2-image-dev autotools-dev libtool --no-install-recommends -y
     git clone https://github.com/DirtBagXon/hypseus-singe.git
     cd hypseus-singe/src
