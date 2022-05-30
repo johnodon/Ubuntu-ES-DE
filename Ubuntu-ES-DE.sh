@@ -26,7 +26,41 @@ if [[ "$SUDO_USER" == root ]]; then
 fi
 }
 
-# Output to log file
+# Menu to present optional packages
+select_options() {
+PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Packages" \
+    --checklist "This script will install ES-DE and its dependencies even if no optional packages are selected. \
+    Use arrown keys to move up/down and SPACE to select/deselct optional packages. Select OK and press [ENTER] when finished.  \
+    Select CANCEL and press [ENTER] to terminate the script" 30 100 30 \
+    install_extra_tools "Install extra tools" off install_hypseus_singe "Install Hypseus-Singe emulator" off install_retroarch \
+    "Install RetroArch" off 3>&1 1>&2 2>&3)
+response=$?
+if [ "$response" == "1" ] ; then
+    clear
+    echo "Installation cancelled by user. $LOG_FILE has been deleted."
+    rm $LOG_FILE
+    exit
+fi
+}
+
+optional_packages() {
+    select_options
+    for SELECTION in $PACKAGES; do
+    case $SELECTION in
+    install_extra_tools)
+        install_extra_tools
+        ;;
+    install_hypseus_singe)
+        install_hypseus_singe
+        ;;
+    install_retroarch)
+        install_retroarch
+        ;;
+    esac
+    done
+}
+
+# Output to both console and log file
 enable_logging() {
     echo "--------------------------------------------------------------------------------"
     echo "| Saving console output to '$LOG_FILE'"
@@ -38,26 +72,6 @@ enable_logging() {
 
 #################################################################### END PREFLIGHT SECTION ####################################################################
 
-
-############################################################# START OPTIONALPACKAGES MENU SECTION #############################################################
-
-# Main installation menu
-select_options() {
-PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Packages" \
-    --checklist "This script will install ES-DE and its dependencies even if no optional packages are selected. \
-    Use arrown keys to move up/down and SPACE to select/deselct optional packages. Select OK and press [ENTER] when finished.  \
-    Select CANCEL and press [ENTER] to terminate the script" 30 100 30 \
-    install_extra_tools "Install extra tools" off install_hypseus_singe "Install Hypseus-Singe emulator" off install_retroarch \
-    "Install RetroArch" off 3>&1 1>&2 2>&3)
-response=$?
-if [ "$response" == "1" ] ; then
-    clear
-    echo "Installation cancelled by user."
-    exit
-fi
-}
-
-############################################################## END OPTIONALPACKAGES MENU SECTION ##############################################################
 
 
 ############################################################### START BASE INSTALLATION SECTION ###############################################################
@@ -144,7 +158,8 @@ install_hypseus_singe() {
     echo "| Installing Hypseus-Singe"
     echo "--------------------------------------------------------------------------------"
     cd ~
-    apt install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev libsdl2-image-dev autotools-dev libtool --no-install-recommends -y
+    apt install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev \
+    libsdl2-image-dev autotools-dev libtool --no-install-recommends -y
     git clone https://github.com/DirtBagXon/hypseus-singe.git
     cd hypseus-singe/src
     cmake .
@@ -191,6 +206,7 @@ remove_unneeded_packages() {
 preflight() {
     check_perms
     enable_logging
+    optional_packages
 }
 
 
@@ -204,25 +220,6 @@ base_installation() {
 }
 
 
-### Optional Packages Installation Functions ###
-optional_packages() {
-    select_options
-    for SELECTION in $PACKAGES; do
-    case $SELECTION in
-    install_extra_tools)
-        install_extra_tools
-        ;;
-    install_hypseus_singe)
-        install_hypseus_singe
-        ;;
-    install_retroarch)
-        install_retroarch
-        ;;
-    esac
-    done
-}
-
-
 ### Cleanup Functions ###
 cleanup() {
     repair_permissions
@@ -230,7 +227,6 @@ cleanup() {
 }
 
 preflight
-optional_packages
 cleanup
 
 echo "********************************************************************************"
