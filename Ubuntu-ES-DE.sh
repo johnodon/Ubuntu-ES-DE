@@ -101,7 +101,7 @@ install_esde() {
     echo "| Installing EmulationStation Desktop Edition"
     echo "--------------------------------------------------------------------------------"
     cd ~
-    wget -O EmulationStation-DE-x64_Current.AppImage  https://gitlab.com/es-de/emulationstation-de/-/package_files/40176633/download
+    wget -O $USER_HOME/EmulationStation-DE-x64_Current.AppImage  https://gitlab.com/es-de/emulationstation-de/-/package_files/40176633/download
     chown $USER:$USER ~/EmulationStation-DE-x64_Current.AppImage
     chmod +x EmulationStation-DE-x64_Current.AppImage
     echo -e "FINISHED install_esde \n\n"
