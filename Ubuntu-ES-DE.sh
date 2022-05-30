@@ -32,7 +32,7 @@ enable_logging() {
     echo "| Saving console output to '$LOG_FILE'"
     echo "--------------------------------------------------------------------------------"
     touch $LOG_FILE
-    exec > >(tee $LOG_FILE) 2>&1
+    exec > >(tee $LOG_FILE)
     sleep 2
 }
 
@@ -155,7 +155,7 @@ install_hypseus_singe() {
 ### Preflight Functions ###
 preflight() {
     check_perms
-    #enable_logging
+    enable_logging
 }
 
 
