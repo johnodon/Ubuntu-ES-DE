@@ -43,23 +43,6 @@ if [ "$response" == "1" ] ; then
 fi
 }
 
-optional_packages() {
-    select_options
-    for SELECTION in $PACKAGES; do
-    case $SELECTION in
-    install_extra_tools)
-        install_extra_tools
-        ;;
-    install_hypseus_singe)
-        install_hypseus_singe
-        ;;
-    install_retroarch)
-        install_retroarch
-        ;;
-    esac
-    done
-}
-
 # Output to both console and log file
 enable_logging() {
     echo "--------------------------------------------------------------------------------"
@@ -74,7 +57,7 @@ enable_logging() {
 
 
 
-############################################################### START BASE INSTALLATION SECTION ###############################################################
+################################################################# START BASE INSTALLATION SECTION ##################################################################
 
 # Create file in sudoers.d directory and disable password prompt
 disable_sudo_password() {
@@ -129,10 +112,28 @@ configure_openbox() {
     echo -e "FINISHED configure_openbox \n\n"
 }
 
-############################################################### END BASE INSTALLATION SECTION ###############################################################
+################################################################# END BASE INSTALLATION SECTION ##################################################################
 
 
-######################################################## START OPTIONAL PACKAGE INSTALLATION SECTION ########################################################
+
+################################################################# START OPTIONAL INSTALLATION SECTION ##################################################################
+
+optional_packages() {
+    select_options
+    for SELECTION in $PACKAGES; do
+    case $SELECTION in
+    install_extra_tools)
+        install_extra_tools
+        ;;
+    install_hypseus_singe)
+        install_hypseus_singe
+        ;;
+    install_retroarch)
+        install_retroarch
+        ;;
+    esac
+    done
+}
 
 # Install Extra Tools
 install_extra_tools() {
@@ -173,7 +174,8 @@ install_hypseus_singe() {
     echo -e "FINISHED install_hypseus_singe \n\n"
 }
 
-######################################################### END OPTIONAL PACKAGE INSTALLATION SECTION #########################################################
+################################################################# END OPTIONAL INSTALLATION SECTION ##################################################################
+
 
 
 ################################################################### START CLEANUP SECTION ###################################################################
@@ -206,17 +208,21 @@ remove_unneeded_packages() {
 preflight() {
     check_perms
     enable_logging
-    optional_packages
 }
 
 
-### Base Installation Functions ###
+### BASE Installation Functions ###
 base_installation() {
     disable_sudo_password
     update_upgrade
     install_dependencies
     install_esde
     configure_openbox
+}
+
+### OPTIONAL Installation Functions ###
+optional_installation() {
+    optional_packages
 }
 
 
@@ -227,6 +233,8 @@ cleanup() {
 }
 
 preflight
+base_installation
+optional_installation
 cleanup
 
 echo "********************************************************************************"
