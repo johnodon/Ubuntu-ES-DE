@@ -112,7 +112,7 @@ configure_openbox() {
     echo "--------------------------------------------------------------------------------"
     echo "| Configuring Openbox to autostart ES-DE"
     echo "--------------------------------------------------------------------------------"
-    mkdir -p $USER_HOME/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage --no-splash" > $USER_HOME/.config/openbox/autostart
+    mkdir -p $USER_HOME/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage" > $USER_HOME/.config/openbox/autostart
     chown -R $USER:$USER $USER_HOME/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
 }
