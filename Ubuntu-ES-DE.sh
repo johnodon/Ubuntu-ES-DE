@@ -26,13 +26,14 @@ if [[ "$SUDO_USER" == root ]]; then
 fi
 }
 
-# Menu to present optional packages
+# Menu to present installation options
 main_menu() {
 PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Packages" \
     --checklist "Use arrown keys to move up/down and SPACE to select/deselct packages. \
     Select OK and press [ENTER] when finished. \
     Select CANCEL and press [ENTER] to terminate the script" 30 100 30 \
     initial_install "Perform initial install (do this only the first time)" on \
+    
     install_intel_driver "Install latest Intel GPU driver" off \
     install_nvidia_driver "Install latest Nvidia GPU driver" off \
     install_mesa "Install latest version of Mesa" off \
@@ -48,7 +49,7 @@ if [ "$response" == "1" ] ; then
 fi
 }
 
-# Output to both console and log file
+# Output to log file
 enable_logging() {
     echo "--------------------------------------------------------------------------------"
     echo "| Saving console output to '$LOG_FILE'"
@@ -79,7 +80,7 @@ package_selection() {
             ;;
         install_mesa)
             install_mesa
-            ;;     
+            ;;
         install_extra_tools)
             install_extra_tools
             ;;
@@ -254,7 +255,7 @@ preflight() {
 
 
 ### BASE Installation Functions ###
-base_installation() {
+initial_install() {
     disable_sudo_password
     update_upgrade
     install_dependencies
@@ -279,5 +280,5 @@ installation
 cleanup
 
 echo "********************************************************************************"
-echo "* Installtion complete"
+echo "| Installtion complete"
 echo "********************************************************************************"
