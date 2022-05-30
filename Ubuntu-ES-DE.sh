@@ -88,7 +88,7 @@ update_upgrade() {
 # Install dependencies
 install_dependencies() {
     echo "--------------------------------------------------------------------------------"
-    echo "| Updating OS with latest packages"
+    echo "| Installing dependencies"
     echo "--------------------------------------------------------------------------------"
     apt-get install openbox obconf unzip xmlstarlet scrot openssh-server fuse --no-install-recommends -y
     echo -e "FINISHED install_dependencies \n\n"
