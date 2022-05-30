@@ -211,10 +211,10 @@ install_hypseus_singe() {
     cmake .
     make -j
     mkdir -p $USER_HOME/Applications/hypseus-singe
-    cp -r ../fonts ~/Applications/hypseus-singe
-    cp -r ../roms ~/Applications/hypseus-singe
-    cp -r ../sound ~/Applications/hypseus-singe
-    cp -r ../pics ~/Applications/hypseus-singe
+    cp -r ../fonts $USER_HOME/Applications/hypseus-singe
+    cp -r ../roms $USER_HOME/Applications/hypseus-singe
+    cp -r ../sound $USER_HOME/Applications/hypseus-singe
+    cp -r ../pics $USER_HOME/Applications/hypseus-singe
     cp hypseus $USER_HOME/Applications/hypseus-singe/hypseus.bin
     echo -e "FINISHED install_hypseus_singe \n\n"
 }
