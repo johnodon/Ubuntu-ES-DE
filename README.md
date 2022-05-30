@@ -26,7 +26,8 @@ Script to automate the installation on EmulationStation Desktop Edition (https:/
 # Running the ES-DE install script...
   - Log in as the user you chose.
   - Run the following command in a terminal:
-      - `sudo apt update && sudo apt install openssh-server dialog && wget https://raw.githubusercontent.com/johnodon/Ubuntu-ES-DE/main/Ubuntu-ES-DE.sh && chmod +x Ubuntu-ES-DE.sh && sudo ./Ubuntu-ES-DE.sh`
+      - `sudo apt update && sudo apt install openssh-server dialog && wget https://raw.githubusercontent.com/johnodon/Ubuntu-ES-DE/temp/Ubuntu-ES-DE.sh && chmod +x Ubuntu-ES-DE.sh && sudo ./Ubuntu-ES-DE.sh`
       - You will need to provide the password for the user.
-      - The script will install ES-DE and its dependencies to run in an Openbox environment and also present optional software that can be installed.
+      - The script will install ES-DE the dependencies needed to run in an Openbox environment.  It will also present optional software that can be installed.
+      - Once it completes, restart the system, logout of Gnome and log into Openbox.
 
