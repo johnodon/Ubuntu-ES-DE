@@ -26,12 +26,13 @@ if [[ "$SUDO_USER" == root ]]; then
 fi
 }
 
-# Menu to present optional packages
+# Menu to present installation options
 main_menu() {
 PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Packages" \
-    --checklist "This script will install ES-DE and its dependencies even if no optional packages are selected. \
-    Use arrown keys to move up/down and SPACE to select/deselct optional packages. Select OK and press [ENTER] when finished.  \
+    --checklist "Use arrown keys to move up/down and SPACE to select/deselct packages. \
+    Select OK and press [ENTER] when finished. \
     Select CANCEL and press [ENTER] to terminate the script" 30 100 30 \
+    initial_install "Perform initial install (do this only the first time)" on \
     install_intel_driver "Install latest Intel GPU driver" off \
     install_nvidia_driver "Install latest Nvidia GPU driver" off \
     install_mesa "Install latest version of Mesa" off \
@@ -47,7 +48,7 @@ if [ "$response" == "1" ] ; then
 fi
 }
 
-# Output to both console and log file
+# Output to log file
 enable_logging() {
     echo "--------------------------------------------------------------------------------"
     echo "| Saving console output to '$LOG_FILE'"
@@ -61,7 +62,36 @@ enable_logging() {
 
 
 
-################################################################# START BASE INSTALLATION SECTION ##################################################################
+#################################################################### START PACKAGE SECTION ####################################################################
+
+# Readout package selections
+package_selection() {
+    for SELECTION in $PACKAGES; do
+        case $SELECTION in
+        initial_install)
+            initial_install
+            ;;
+        install_intel_driver)
+            install_intel_driver
+            ;;
+        install_nvidia_driver)
+            install_nvidia_driver
+            ;;
+        install_mesa)
+            install_mesa
+            ;;
+        install_extra_tools)
+            install_extra_tools
+            ;;
+        install_retroarch)
+            install_retroarch
+            ;;
+        install_hypseus_singe)
+            install_hypseus_singe
+            ;;
+     esac
+     done
+ }
 
 # Create file in sudoers.d directory and disable password prompt
 disable_sudo_password() {
@@ -115,38 +145,6 @@ configure_openbox() {
     chown -R $USER:$USER $USER_HOME/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
 }
-
-################################################################# END BASE INSTALLATION SECTION ##################################################################
-
-
-
-################################################################# START OPTIONAL INSTALLATION SECTION ##################################################################
-
-# Readout package selections
-package_selection() {
-    for SELECTION in $PACKAGES; do
-        case $SELECTION in
-        install_intel_driver)
-            install_intel_driver
-            ;;
-        install_nvidia_driver)
-            install_nvidia_driver
-            ;;
-        install_mesa)
-            install_mesa
-            ;;     
-        install_extra_tools)
-            install_extra_tools
-            ;;
-        install_retroarch)
-            install_retroarch
-            ;;
-        install_hypseus_singe)
-            install_hypseus_singe
-            ;;
-     esac
-     done
- }
 
 # Install latest Intel GPU driver
 install_intel_driver() {
@@ -218,11 +216,11 @@ install_hypseus_singe() {
     echo -e "FINISHED install_hypseus_singe \n\n"
 }
 
-################################################################# END OPTIONAL INSTALLATION SECTION ##################################################################
+##################################################################### END PACKAGE SECTION #####################################################################
 
 
 
-################################################################### START CLEANUP SECTION ###################################################################
+#################################################################### START CLEANUP SECTION ####################################################################
 
 # Repair any permissions that might have been incorrectly set
 repair_permissions() {
@@ -246,7 +244,7 @@ remove_unneeded_packages() {
     sleep 2
 }
 
-#################################################################### END CLEANUP SECTION ####################################################################
+##################################################################### END CLEANUP SECTION #####################################################################
 
 ### Preflight Functions ###
 preflight() {
@@ -257,7 +255,7 @@ preflight() {
 
 
 ### BASE Installation Functions ###
-base_installation() {
+initial_install() {
     disable_sudo_password
     update_upgrade
     install_dependencies
@@ -266,7 +264,7 @@ base_installation() {
 }
 
 ### OPTIONAL Installation Functions ###
-optional_installation() {
+installation() {
     package_selection
 }
 
@@ -278,10 +276,9 @@ cleanup() {
 }
 
 preflight
-base_installation
-optional_installation
+installation
 cleanup
 
-echo "********************************************************************************"
-echo "* Installtion complete"
-echo "********************************************************************************"
+echo "--------------------------------------------------------------------------------"
+echo "| Installtion complete.  Check $LOG_FILE for details"
+echo "--------------------------------------------------------------------------------"
