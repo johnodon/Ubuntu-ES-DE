@@ -42,8 +42,7 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
 response=$?
 if [ "$response" == "1" ] ; then
     clear
-    echo "Installation cancelled by user. $LOG_FILE has been deleted."
-    rm $LOG_FILE
+    echo "Installation cancelled by user."
     exit
 fi
 }
