@@ -152,6 +152,33 @@ install_hypseus_singe() {
 
 ######################################################### END OPTIONAL PACKAGE INSTALLATION SECTION #########################################################
 
+
+################################################################### START CLEANUP SECTION ###################################################################
+
+# Repair any permissions that might have been incorrectly set
+repair_permissions() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Repairing file & folder permissions underneath $USER_HOME"
+    echo "| by changing owner to $USER on all files and directories under $USER_HOME"
+    echo "--------------------------------------------------------------------------------"
+    chown -R $USER:$USER $USER_HOME/
+    echo -e "FINISHED repair_permissions \n\n"
+    sleep 2
+}
+
+# Remove unneeded packages
+remove_unneeded_packages() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Autoremoving any unneeded packages"
+    echo "--------------------------------------------------------------------------------"
+    apt-get update && apt-get -y upgrade
+    apt-get -y autoremove
+    echo -e "FINISHED remove_unneeded_packages \n\n"
+    sleep 2
+}
+
+#################################################################### END CLEANUP SECTION ####################################################################
+
 ### Preflight Functions ###
 preflight() {
     check_perms
@@ -186,8 +213,17 @@ optional_packages() {
     esac
     done
 }
+
+
+### Cleanup Functions ###
+cleanup() {
+    repair_permissions
+    remove_unneeded_packages
+}
+
 preflight
 optional_packages
+cleanup
 
 echo "********************************************************************************"
 echo "* Installtion complete"
