@@ -182,7 +182,7 @@ install_extra_tools() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing extra tools"
     echo "--------------------------------------------------------------------------------"
-    apt-get install mc thunar mpv samba dos2unix git dialog --no-install-recommends -y
+    apt-get install mc thunar mpv samba dos2unix git dialog curl --no-install-recommends -y
     echo -e "FINISHED install_extra_tools \n\n"
 }
 
