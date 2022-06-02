@@ -1,27 +1,23 @@
-
 #!/bin/bash
 
 # Declare variables
 APPIMAGELINK=$(curl https://gitlab.com/es-de/emulationstation-de/-/raw/master/es-app/assets/latest_steam_deck_appimage.txt | tail -1)
-ESCOMMAND=$(ps -eo args | grep EmulationStation-DE | head -1)
-APPIMAGEFILE=$(ps -eo args | grep EmulationStation-DE | head -1 | tail -1)
-APPIMAGEFILE2=${APPIMAGEFILE% *}
+ESDECOMMAND=$(ps -eo args | grep EmulationStation-DE | head -1)
+APPIMAGEFILE=${ESDECOMMAND% *}
 
-# Dlete backup of AppImage if exists
-[ -f "$APPIMAGEFILE2.old" ] && rm "$APPIMAGEFILE2.old"
+# Delete backup of AppImage if exists
+[ -f "$APPIMAGEFILE.old" ] && rm "$APPIMAGEFILE.old"
 
 # Kill ES-DE
-pkill -f -e EmulationStatio
+pkill -f -e EmulationStatio > /dev/null 2>&1
 
 # Create backup of AppImage
-[ -f "$APPIMAGEFILE2" ] && mv "$APPIMAGEFILE2" "$APPIMAGEFILE2.old"
+[ -f "$APPIMAGEFILE" ] && mv "$APPIMAGEFILE" "$APPIMAGEFILE.old"
 
 # Download latest AppImage and set to executable
-wget -O "$APPIMAGEFILE2" $APPIMAGELINK &> /dev/null
-chmod +x "$APPIMAGEFILE2"
+wget -O "$APPIMAGEFILE" $APPIMAGELINK > /dev/null 2>&1
+chmod +x "$APPIMAGEFILE"
 
 # Start ES-DE
 sleep 2
-$ESCOMMAND &
-
-exit 0
+$ESDECOMMAND > /dev/null 2>&1 &
