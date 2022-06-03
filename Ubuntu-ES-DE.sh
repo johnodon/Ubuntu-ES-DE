@@ -129,10 +129,10 @@ install_esde() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing EmulationStation Desktop Edition"
     echo "--------------------------------------------------------------------------------"
-    cd $USER_HOME
-    wget -O $USER_HOME/EmulationStation-DE-x64_Current.AppImage  https://gitlab.com/es-de/emulationstation-de/-/package_files/40176633/download
-    chown $USER:$USER $USER_HOME/EmulationStation-DE-x64_Current.AppImage
-    chmod +x $USER_HOME/EmulationStation-DE-x64_Current.AppImage
+    mkdir -p $USER_HOME/Applications/EmulationStation-DE/
+    wget -O $USER_HOME/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage  https://gitlab.com/es-de/emulationstation-de/-/package_files/40176633/download
+    chown $USER:$USER $USER_HOME/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage
+    chmod +x $USER_HOME/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage
     echo -e "FINISHED install_esde \n\n"
 }
 
@@ -141,7 +141,7 @@ configure_openbox() {
     echo "--------------------------------------------------------------------------------"
     echo "| Configuring Openbox to autostart ES-DE"
     echo "--------------------------------------------------------------------------------"
-    mkdir -p $USER_HOME/.config/openbox && echo "~/EmulationStation-DE-x64_Current.AppImage" > $USER_HOME/.config/openbox/autostart
+    mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage" > $USER_HOME/.config/openbox/autostart
     chown -R $USER:$USER $USER_HOME/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
 }
