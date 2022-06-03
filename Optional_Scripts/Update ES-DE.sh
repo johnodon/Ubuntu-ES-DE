@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script will update the ES-DE AppImage with the current version from the Gitlab repository.
+
 # Declare variables
 APPIMAGELINK=$(curl https://gitlab.com/es-de/emulationstation-de/-/raw/master/es-app/assets/latest_steam_deck_appimage.txt | tail -1)
 ESDECOMMAND=$(ps -eo args | grep EmulationStation-DE | head -1)
