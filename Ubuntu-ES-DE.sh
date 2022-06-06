@@ -131,9 +131,9 @@ install_esde() {
     echo "--------------------------------------------------------------------------------"
     APPIMAGELINK=$(curl https://gitlab.com/es-de/emulationstation-de/-/raw/master/es-app/assets/latest_steam_deck_appimage.txt | tail -1)
     mkdir -p $USER_HOME/Applications/EmulationStation-DE/ && cd $USER_HOME/Applications/EmulationStation-DE/
-    wget -O $USER_HOME/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage $APPIMAGELINK > /dev/null 2>&1
-    chmod +x $USER_HOME/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage
-    chown $USER:$USER $USER_HOME/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage
+    wget -O EmulationStation-DE-x64_Current.AppImage $APPIMAGELINK > /dev/null 2>&1
+    chmod +x EmulationStation-DE-x64_Current.AppImage
+    chown $USER:$USER EmulationStation-DE-x64_Current.AppImage
     cd $USER_HOME
     echo -e "FINISHED install_esde \n\n"
 }
