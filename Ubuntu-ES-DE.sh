@@ -119,8 +119,7 @@ install_dependencies() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing dependencies"
     echo "--------------------------------------------------------------------------------"
-    #apt-get install openbox obconf unzip xmlstarlet scrot openssh-server fuse curl --no-install-recommends -y
-    apt-get install unzip xmlstarlet scrot openssh-server fuse curl sway swaybg kitty --no-install-recommends -y
+    apt-get install openbox obconf unzip xmlstarlet scrot openssh-server fuse curl --no-install-recommends -y
     echo -e "FINISHED install_dependencies \n\n"
     sleep 2
 }
@@ -140,23 +139,13 @@ install_esde() {
 }
 
 # Configure Openbox to autostart ES-DE
-#configure_openbox() {
-    #echo "--------------------------------------------------------------------------------"
-    #echo "| Configuring Openbox to autostart ES-DE"
-    #echo "--------------------------------------------------------------------------------"
-    #mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage" > $USER_HOME/.config/openbox/autostart
-    #chown -R $USER:$USER $USER_HOME/.config/openbox
-    #echo -e "FINISHED configure_openbox \n\n"
-#}
-
-# Configure Sway to autostart ES-DE
-configure_sway() {
-    #echo "--------------------------------------------------------------------------------"
-    #echo "| Configuring Sway to autostart ES-DE"
-    #echo "--------------------------------------------------------------------------------"
-    mkdir -p $USER_HOME/.config/sway && echo "exec kitty" > $USER_HOME/.config/sway/config
-    chown -R $USER:$USER $USER_HOME/.config/sway
-    echo -e "FINISHED configure_sway \n\n"
+configure_openbox() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Configuring Openbox to autostart ES-DE"
+    echo "--------------------------------------------------------------------------------"
+    mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage" > $USER_HOME/.config/openbox/autostart
+    chown -R $USER:$USER $USER_HOME/.config/openbox
+    echo -e "FINISHED configure_openbox \n\n"
 }
 
 # Install latest Intel GPU driver
@@ -276,8 +265,7 @@ initial_install() {
     update_upgrade
     install_dependencies
     install_esde
-    #configure_openbox
-    configure_sway
+    configure_openbox
 }
 
 ### OPTIONAL Installation Functions ###
