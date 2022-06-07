@@ -114,6 +114,32 @@ update_upgrade() {
     sleep 2
 }
 
+# Change the default runlevel to multi-user
+# This disables GDM from loading at boot (new for 20.04)
+enable_runlevel_multiuser() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Enabling the 'multi-user' runlevel"
+    echo "--------------------------------------------------------------------------------"
+    systemctl set-default multi-user
+    echo -e "FINISHED enable_runlevel_multiuser \n\n"
+    sleep 2
+}
+
+# Hide Boot Messages
+hide_boot_messages() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Hiding boot messages"
+    echo "--------------------------------------------------------------------------------"
+    # Hide kernel messages and blinking cursor via GRUB
+    sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=".*"/GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=2 fsck.mode=skip vt.global_cursor_default=0 video=1920x1080"/g' /etc/default/grub
+    update-grub
+    # Disable motd
+    touch $USER_HOME/.hushlogin
+    chown $USER:$USER $USER_HOME/.hushlogin
+    echo -e "FINISHED hide_boot_messages \n\n"
+    sleep 2
+}
+
 # Install dependencies
 install_dependencies() {
     echo "--------------------------------------------------------------------------------"
@@ -227,6 +253,22 @@ install_hypseus_singe() {
 
 #################################################################### START CLEANUP SECTION ####################################################################
 
+# Fix known quirks
+fix_quirks() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Fixing any known quirks"
+    echo "--------------------------------------------------------------------------------"
+    echo " "
+    echo "+-------------------------------------------------------------------------------"
+    echo "| Add $USER user to the additional groups
+    echo "+-------------------------------------------------------------------------------"
+    usermod -a -G input $USER
+    usermod -a -G audio $USER
+    usermod -a -G video $USER
+    echo -e "FINISHED fix_quirks \n\n"
+    sleep 2
+}
+
 # Repair any permissions that might have been incorrectly set
 repair_permissions() {
     echo "--------------------------------------------------------------------------------"
@@ -263,6 +305,8 @@ preflight() {
 initial_install() {
     disable_sudo_password
     update_upgrade
+    enable_runlevel_multiuser
+    hide_boot_messages
     install_dependencies
     install_esde
     configure_openbox
@@ -276,6 +320,7 @@ installation() {
 
 ### Cleanup Functions ###
 cleanup() {
+    fix_quirks
     repair_permissions
     remove_unneeded_packages
 }
