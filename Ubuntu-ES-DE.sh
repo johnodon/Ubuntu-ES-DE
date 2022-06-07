@@ -150,7 +150,7 @@ install_esde() {
 #}
 
 # Configure Sway to autostart ES-DE
-#configure_sway() {
+configure_sway() {
     #echo "--------------------------------------------------------------------------------"
     #echo "| Configuring Sway to autostart ES-DE"
     #echo "--------------------------------------------------------------------------------"
