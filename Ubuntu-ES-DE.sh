@@ -305,8 +305,8 @@ preflight() {
 initial_install() {
     disable_sudo_password
     update_upgrade
-    enable_runlevel_multiuser
-    hide_boot_messages
+    #enable_runlevel_multiuser
+    #hide_boot_messages
     install_dependencies
     install_esde
     configure_openbox
@@ -320,7 +320,7 @@ installation() {
 
 ### Cleanup Functions ###
 cleanup() {
-    fix_quirks
+    #fix_quirks
     repair_permissions
     remove_unneeded_packages
 }
