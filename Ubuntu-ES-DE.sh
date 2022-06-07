@@ -154,7 +154,7 @@ configure_sway() {
     #echo "--------------------------------------------------------------------------------"
     #echo "| Configuring Sway to autostart ES-DE"
     #echo "--------------------------------------------------------------------------------"
-    mkdir -p $USER_HOME/.config/sway && echo "kitty" > $USER_HOME/.config/sway/config
+    mkdir -p $USER_HOME/.config/sway && echo "exec kitty" > $USER_HOME/.config/sway/config
     chown -R $USER:$USER $USER_HOME/.config/sway
     echo -e "FINISHED configure_sway \n\n"
 }
@@ -218,7 +218,7 @@ install_hypseus_singe() {
     libsdl2-image-dev autotools-dev libtool automake --no-install-recommends -y
     wget -O hypseus-singe_2.8.2a_ES-DE.tar.gz https://gitlab.com/es-de/emulationstation-de/-/package_files/41533436/download
     tar -xvf hypseus-singe_2.8.2a_ES-DE.tar.gz -C $USER_HOME/Applications/
-    rm $USER/HOME/hypseus-singe_2.8.2a_ES-DE.tar.gz
+    rm $USER_HOME/hypseus-singe_2.8.2a_ES-DE.tar.gz
     #git clone https://github.com/DirtBagXon/hypseus-singe.git
     #cd $USER_HOME/hypseus-singe/src
     #cmake .
