@@ -260,7 +260,7 @@ fix_quirks() {
     echo "--------------------------------------------------------------------------------"
     echo " "
     echo "+-------------------------------------------------------------------------------"
-    echo "| Add $USER user to the additional groups
+    echo "| Add $USER user to the additional groups"
     echo "+-------------------------------------------------------------------------------"
     usermod -a -G input $USER
     usermod -a -G audio $USER
