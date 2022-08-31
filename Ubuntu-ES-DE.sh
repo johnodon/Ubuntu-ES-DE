@@ -158,7 +158,7 @@ install_esde() {
     APPIMAGELINK=$(curl https://gitlab.com/es-de/emulationstation-de/-/raw/master/es-app/assets/latest_steam_deck_appimage.txt | tail -1)
     mkdir -p $USER_HOME/Applications/EmulationStation-DE/ && cd $USER_HOME/Applications/EmulationStation-DE/
     #wget -O EmulationStation-DE-x64_Current.AppImage $APPIMAGELINK > /dev/null 2>&1
-    wget -O EmulationStation-DE-x64_Current.AppImage https://gitlab.com/es-de/emulationstation-de/-/package_files/43629473/download > /dev/null 2>&1
+    wget -O EmulationStation-DE-x64_Current.AppImage https://gitlab.com/es-de/emulationstation-de/-/package_files/48239574/download > /dev/null 2>&1
     chmod +x EmulationStation-DE-x64_Current.AppImage
     chown $USER:$USER EmulationStation-DE-x64_Current.AppImage
     cd $USER_HOME
@@ -232,19 +232,19 @@ install_hypseus_singe() {
     cd $USER_HOME
     apt-get install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev \
     libsdl2-image-dev autotools-dev libtool automake --no-install-recommends -y
-    wget -O hypseus-singe_2.8.2a_ES-DE.tar.gz https://gitlab.com/es-de/emulationstation-de/-/package_files/41533436/download
-    tar -xvf hypseus-singe_2.8.2a_ES-DE.tar.gz -C $USER_HOME/Applications/
-    rm $USER_HOME/hypseus-singe_2.8.2a_ES-DE.tar.gz
-    #git clone https://github.com/DirtBagXon/hypseus-singe.git
-    #cd $USER_HOME/hypseus-singe/src
-    #cmake .
-    #make -j
-    #mkdir -p $USER_HOME/Applications/hypseus-singe
-    #cp -r ../fonts $USER_HOME/Applications/hypseus-singe
-    #cp -r ../roms $USER_HOME/Applications/hypseus-singe
-    #cp -r ../sound $USER_HOME/Applications/hypseus-singe
-    #cp -r ../pics $USER_HOME/Applications/hypseus-singe
-    #cp hypseus $USER_HOME/Applications/hypseus-singe/hypseus.bin
+    #wget -O hypseus-singe_2.8.2a_ES-DE.tar.gz https://gitlab.com/es-de/emulationstation-de/-/package_files/41533436/download
+    #tar -xvf hypseus-singe_2.8.2a_ES-DE.tar.gz -C $USER_HOME/Applications/
+    #rm $USER_HOME/hypseus-singe_2.8.2a_ES-DE.tar.gz
+    git clone https://github.com/DirtBagXon/hypseus-singe.git
+    cd $USER_HOME/hypseus-singe/src
+    cmake .
+    make -j
+    mkdir -p $USER_HOME/Applications/hypseus-singe
+    cp -r ../fonts $USER_HOME/Applications/hypseus-singe
+    cp -r ../roms $USER_HOME/Applications/hypseus-singe
+    cp -r ../sound $USER_HOME/Applications/hypseus-singe
+    cp -r ../pics $USER_HOME/Applications/hypseus-singe
+    cp hypseus $USER_HOME/Applications/hypseus-singe/hypseus.bin
     echo -e "FINISHED install_hypseus_singe \n\n"
 }
 
