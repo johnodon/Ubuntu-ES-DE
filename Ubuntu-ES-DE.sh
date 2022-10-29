@@ -149,7 +149,7 @@ install_dependencies() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing dependencies"
     echo "--------------------------------------------------------------------------------"
-    apt-get install openbox obconf unzip xmlstarlet scrot openssh-server fuse curl --no-install-recommends -y
+    apt-get install openbox obconf unzip xmlstarlet scrot openssh-server fuse curl p7zip-full --no-install-recommends -y
     echo -e "FINISHED install_dependencies \n\n"
     sleep 2
 }
@@ -219,12 +219,17 @@ install_extra_tools() {
     echo -e "FINISHED install_extra_tools \n\n"
 }
 
-# Install RetroArch
+# Install RetroArch and latest assets/cores
 install_retroarch() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing RetroArch"
     echo "--------------------------------------------------------------------------------"
     add-apt-repository ppa:libretro/stable -y && apt-get update && apt-get install retroarch -y
+    curl -o $USER_HOME/Downloads/RetroArch_cores.7z http://buildbot.libretro.com/nightly/linux/x86_64/RetroArch_cores.7z
+    7z x RetroArch_cores.7z
+    mv -f $USER_HOME/Downloads/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores/*.so $USER_HOME/.config/retroarch/cores/
+    chown -R $USER:$USER $USER_HOME/.config/retroarch/cores/
+    cd ~
     echo -e "FINISHED install_retroarch \n\n"
 }
 
