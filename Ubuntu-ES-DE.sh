@@ -39,6 +39,7 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     install_extra_tools "Install extra tools" off \
     install_retroarch "Install RetroArch" off \
     install_steam "Install Steam" off \
+    install_steam "Install Google Chrome" off \
     install_hypseus_singe "Install Hypseus-Singe emulator" off \
     3>&1 1>&2 2>&3)
 response=$?
@@ -89,6 +90,9 @@ package_selection() {
             ;;
         install_steam)
             install_steam
+            ;;
+        install_chrome)
+            install_chrome
             ;;
         install_hypseus_singe)
             install_hypseus_singe
@@ -229,6 +233,18 @@ install_steam() {
     echo "--------------------------------------------------------------------------------"
     apt-get install steam --no-install-recommends -y
     echo -e "FINISHED install_steam \n\n"
+}
+
+# Install Google Chrome
+install_chrome() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing Google Chrome"
+    echo "--------------------------------------------------------------------------------"
+    cd $USER_HOME
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    apt install ./google-chrome-stable_current_amd64.deb
+    rm google-chrome-stable_current_amd64.deb
+    echo -e "FINISHED install_chrome \n\n"
 }
 
 # Install Hypseus-Singe
