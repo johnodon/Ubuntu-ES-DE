@@ -38,6 +38,7 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     install_mesa "Install latest version of Mesa" off \
     install_extra_tools "Install extra tools" off \
     install_retroarch "Install RetroArch" off \
+    install_steam "Install Steam" off \
     install_hypseus_singe "Install Hypseus-Singe emulator" off \
     3>&1 1>&2 2>&3)
 response=$?
@@ -85,6 +86,9 @@ package_selection() {
             ;;
         install_retroarch)
             install_retroarch
+            ;;
+        install_steam)
+            install_steam
             ;;
         install_hypseus_singe)
             install_hypseus_singe
@@ -156,11 +160,11 @@ install_esde() {
     echo "| Installing EmulationStation Desktop Edition"
     echo "--------------------------------------------------------------------------------"
     APPIMAGELINK=$(curl https://gitlab.com/es-de/emulationstation-de/-/raw/master/es-app/assets/latest_steam_deck_appimage.txt | tail -1)
-    mkdir -p $USER_HOME/Applications/EmulationStation-DE/ && cd $USER_HOME/Applications/EmulationStation-DE/
+    mkdir -p $USER_HOME/Applications/ && cd $USER_HOME/Applications
     #wget -O EmulationStation-DE-x64_Current.AppImage $APPIMAGELINK > /dev/null 2>&1
-    wget -O EmulationStation-DE-x64_Current.AppImage https://gitlab.com/es-de/emulationstation-de/-/package_files/48239574/download > /dev/null 2>&1
-    chmod +x EmulationStation-DE-x64_Current.AppImage
-    chown $USER:$USER EmulationStation-DE-x64_Current.AppImage
+    wget -O EmulationStation-DE-2.0.0-alpha-2022-09-28-x64.AppImage https://gitlab.com/es-de/emulationstation-de/-/package_files/54374848/download > /dev/null 2>&1
+    chmod +x *
+    chown $USER:$USER *
     cd $USER_HOME
     echo -e "FINISHED install_esde \n\n"
 }
@@ -170,7 +174,7 @@ configure_openbox() {
     echo "--------------------------------------------------------------------------------"
     echo "| Configuring Openbox to autostart ES-DE"
     echo "--------------------------------------------------------------------------------"
-    mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation-DE/EmulationStation-DE-x64_Current.AppImage" > $USER_HOME/.config/openbox/autostart
+    mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation*.AppImage" > $USER_HOME/.config/openbox/autostart
     chown -R $USER:$USER $USER_HOME/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
 }
@@ -222,6 +226,15 @@ install_retroarch() {
     echo "--------------------------------------------------------------------------------"
     add-apt-repository ppa:libretro/stable -y && apt-get update && apt-get install retroarch -y
     echo -e "FINISHED install_retroarch \n\n"
+}
+
+# Install Steam
+install_steam() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing Steam"
+    echo "--------------------------------------------------------------------------------"
+    apt-get install steam --no-install-recommends -y
+    echo -e "FINISHED install_steam \n\n"
 }
 
 # Install Hypseus-Singe
@@ -306,8 +319,7 @@ preflight() {
 initial_install() {
     disable_sudo_password
     update_upgrade
-    #enable_runlevel_multiuser
-    #hide_boot_messages
+    hide_boot_messages
     install_dependencies
     install_esde
     configure_openbox
@@ -321,7 +333,7 @@ installation() {
 
 ### Cleanup Functions ###
 cleanup() {
-    #fix_quirks
+    fix_quirks
     repair_permissions
     remove_unneeded_packages
 }
