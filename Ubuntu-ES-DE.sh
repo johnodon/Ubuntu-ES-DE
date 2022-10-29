@@ -118,17 +118,6 @@ update_upgrade() {
     sleep 2
 }
 
-# Change the default runlevel to multi-user
-# This disables GDM from loading at boot (new for 20.04)
-enable_runlevel_multiuser() {
-    echo "--------------------------------------------------------------------------------"
-    echo "| Enabling the 'multi-user' runlevel"
-    echo "--------------------------------------------------------------------------------"
-    systemctl set-default multi-user
-    echo -e "FINISHED enable_runlevel_multiuser \n\n"
-    sleep 2
-}
-
 # Hide Boot Messages
 hide_boot_messages() {
     echo "--------------------------------------------------------------------------------"
@@ -215,7 +204,7 @@ install_extra_tools() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing extra tools"
     echo "--------------------------------------------------------------------------------"
-    apt-get install mc thunar mpv samba dos2unix git dialog htop mesa-utils --no-install-recommends -y
+    apt-get install mc thunar mpv samba dos2unix git dialog htop mesa-utils xrdp x11vnc --no-install-recommends -y
     echo -e "FINISHED install_extra_tools \n\n"
 }
 
