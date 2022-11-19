@@ -155,7 +155,7 @@ install_esde() {
     APPIMAGELINK=$(curl https://gitlab.com/es-de/emulationstation-de/-/raw/master/es-app/assets/latest_steam_deck_appimage.txt | tail -1)
     mkdir -p $USER_HOME/Applications/ && cd $USER_HOME/Applications
     #wget -O EmulationStation-DE-x64_Current.AppImage $APPIMAGELINK > /dev/null 2>&1
-    wget -O EmulationStation-DE-2.0.0-alpha-2022-09-28-x64.AppImage https://gitlab.com/es-de/emulationstation-de/-/package_files/54374848/download > /dev/null 2>&1
+    wget -O EmulationStation-DE-2.0.0-alpha-2022-09-28-x64.AppImage https://gitlab.com/es-de/emulationstation-de/-/package_files/58618844/download > /dev/null 2>&1
     chmod +x *
     chown $USER:$USER *
     cd $USER_HOME
