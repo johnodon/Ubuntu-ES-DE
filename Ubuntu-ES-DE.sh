@@ -219,9 +219,9 @@ install_retroarch() {
     echo "--------------------------------------------------------------------------------"
     add-apt-repository ppa:libretro/stable -y && apt-get update && apt-get install retroarch -y
     curl -o $USER_HOME/Downloads/RetroArch_cores.7z http://buildbot.libretro.com/nightly/linux/x86_64/RetroArch_cores.7z
-    7z x RetroArch_cores.7z
+    7z x -o$USER_HOME/Downloads $USER_HOME/Downloads/RetroArch_cores.7z
     mkdir -p $USER_HOME/.config/retroarch/cores
-    mv -f $USER_HOME/Downloads/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores/*.so $USER_HOME/.config/retroarch/cores/
+    mv -f $USER_HOME/Downloads/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores/* $USER_HOME/.config/retroarch/cores/
     chown -R $USER:$USER $USER_HOME/.config/retroarch/
     cd $USER_HOME
     echo -e "FINISHED install_retroarch \n\n"
