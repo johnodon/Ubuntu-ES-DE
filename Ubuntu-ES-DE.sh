@@ -168,6 +168,7 @@ configure_openbox() {
     echo "| Configuring Openbox to autostart ES-DE"
     echo "--------------------------------------------------------------------------------"
     mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation*.AppImage" > $USER_HOME/.config/openbox/autostart
+    cp $SCRIPT_DIR/files/rc.xml $USER_HOME/.config/openbox/rc.xml
     chown -R $USER:$USER $USER_HOME/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
 }
