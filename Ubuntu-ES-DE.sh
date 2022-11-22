@@ -219,6 +219,7 @@ install_retroarch() {
     add-apt-repository ppa:libretro/stable -y && apt-get update && apt-get install retroarch -y
     mkdir -p $USER_HOME/.config/retroarch/cores
     mkdir -p $USER_HOME/.config/retroarch/assets
+	cd $USER_HOME/Downloads
     curl -o $USER_HOME/Downloads/RetroArch_cores.7z http://buildbot.libretro.com/nightly/linux/x86_64/RetroArch_cores.7z \
 	-o $USER_HOME/Downloads/assets.zip https://buildbot.libretro.com/assets/frontend/assets.zip \
 	-o $USER_HOME/Downloads/info.zip https://buildbot.libretro.com/assets/frontend/info.zip \
@@ -230,13 +231,17 @@ install_retroarch() {
 	-o $USER_HOME/Downloads/shaders_cg.zip https://buildbot.libretro.com/assets/frontend/shaders_cg.zip \
 	-o $USER_HOME/Downloads/shaders_glsl.zip https://buildbot.libretro.com/assets/frontend/shaders_glsl.zip \
 	-o $USER_HOME/Downloads/shaders_slang.zip https://buildbot.libretro.com/assets/frontend/shaders_slang.zip	
-    #curl -o $USER_HOME/Downloads/assets.zip https://buildbot.libretro.com/assets/frontend/assets.zip
+    for file in *.zip
+	do
+		unzip -d "${file%.zip}" "$file"
+	done
+	#curl -o $USER_HOME/Downloads/assets.zip https://buildbot.libretro.com/assets/frontend/assets.zip
     #curl -o $USER_HOME/Downloads/info.zip https://buildbot.libretro.com/assets/frontend/info.zip
     7z x -o$USER_HOME/Downloads $USER_HOME/Downloads/RetroArch_cores.7z
     mv -f $USER_HOME/Downloads/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores/* $USER_HOME/.config/retroarch/cores/
-    7z x -o$USER_HOME/Downloads/assets $USER_HOME/Downloads/assets.zip
+    #7z x -o$USER_HOME/Downloads/assets $USER_HOME/Downloads/assets.zip
     mv -f $USER_HOME/Downloads/assets/* $USER_HOME/.config/retroarch/assets/
-    7z x -o$USER_HOME/Downloads/info $USER_HOME/Downloads/info.zip
+    #7z x -o$USER_HOME/Downloads/info $USER_HOME/Downloads/info.zip
     mv -f $USER_HOME/Downloads/info/* $USER_HOME/.config/retroarch/cores/
     chown -R $USER:$USER $USER_HOME/.config/retroarch/
     cd $USER_HOME
