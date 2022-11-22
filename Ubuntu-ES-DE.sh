@@ -217,8 +217,17 @@ install_retroarch() {
     echo "| Installing RetroArch"
     echo "--------------------------------------------------------------------------------"
     add-apt-repository ppa:libretro/stable -y && apt-get update && apt-get install retroarch -y
-    #mkdir -p $USER_HOME/.config/retroarch/cores
-    #mkdir -p $USER_HOME/.config/retroarch/assets
+    mkdir -p $USER_HOME/.config/retroarch/cores
+    mkdir -p $USER_HOME/.config/retroarch/assets
+	mkdir -p $USER_HOME/.config/retroarch/autoconfig
+	mkdir -p $USER_HOME/.config/retroarch/cheats
+	mkdir -p $USER_HOME/.config/retroarch/database/cursors
+	mkdir -p $USER_HOME/.config/retroarch/database/rdb
+	mkdir -p $USER_HOME/.config/retroarch/overlays
+	mkdir -p $USER_HOME/.config/retroarch/shaders/shaders_cg
+	mkdir -p $USER_HOME/.config/retroarch/shaders/shaders_glsl
+	mkdir -p $USER_HOME/.config/retroarch/shaders/shaders_slang
+	
 	cd $USER_HOME/Downloads
     curl -o $USER_HOME/Downloads/RetroArch_cores.7z http://buildbot.libretro.com/nightly/linux/x86_64/RetroArch_cores.7z \
 	-o $USER_HOME/Downloads/assets.zip https://buildbot.libretro.com/assets/frontend/assets.zip \
