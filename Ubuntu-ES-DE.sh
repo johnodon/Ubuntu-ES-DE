@@ -227,9 +227,9 @@ install_retroarch() {
 	-o $USER_HOME/Downloads/database-cursors.zip https://buildbot.libretro.com/assets/frontend/database-cursors.zip \
 	-o $USER_HOME/Downloads/database-rdb.zip https://buildbot.libretro.com/assets/frontend/database-rdb.zip \
 	-o $USER_HOME/Downloads/overlays.zip https://buildbot.libretro.com/assets/frontend/overlays.zip \
-	-o $USER_HOME/Downloads/shaders_cg.zip hhttps://buildbot.libretro.com/assets/frontend/shaders_cg.zip \
+	-o $USER_HOME/Downloads/shaders_cg.zip https://buildbot.libretro.com/assets/frontend/shaders_cg.zip \
 	-o $USER_HOME/Downloads/shaders_glsl.zip https://buildbot.libretro.com/assets/frontend/shaders_glsl.zip \
-	-o $USER_HOME/Downloads/shaders_slang.zip hhttps://buildbot.libretro.com/assets/frontend/shaders_slang.zip	
+	-o $USER_HOME/Downloads/shaders_slang.zip https://buildbot.libretro.com/assets/frontend/shaders_slang.zip	
     #curl -o $USER_HOME/Downloads/assets.zip https://buildbot.libretro.com/assets/frontend/assets.zip
     #curl -o $USER_HOME/Downloads/info.zip https://buildbot.libretro.com/assets/frontend/info.zip
     7z x -o$USER_HOME/Downloads $USER_HOME/Downloads/RetroArch_cores.7z
