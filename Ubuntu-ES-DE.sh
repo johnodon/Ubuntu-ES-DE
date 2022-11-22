@@ -165,7 +165,6 @@ configure_openbox() {
     echo "--------------------------------------------------------------------------------"
     echo "| Configuring Openbox to autostart ES-DE and hide title bar"
     echo "--------------------------------------------------------------------------------"
-    #mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation*.AppImage" > $USER_HOME/.config/openbox/autostart
     cp -avr $SCRIPT_DIR/files/.config $USER_HOME
     chown -R $USER:$USER $USER_HOME/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
@@ -207,7 +206,8 @@ install_extra_tools() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing extra tools"
     echo "--------------------------------------------------------------------------------"
-    apt-get install mc thunar mpv samba dos2unix git dialog htop mesa-utils xrdp x11vnc blueman net-tools --no-install-recommends -y
+    apt-get install mc thunar mpv samba dos2unix git dialog htop mesa-utils xrdp x11vnc \
+	blueman net-tools --no-install-recommends -y
     echo -e "FINISHED install_extra_tools \n\n"
 }
 
@@ -290,9 +290,6 @@ install_hypseus_singe() {
     cd $USER_HOME
     apt-get install cmake autoconf build-essential libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev libvorbis-dev \
     libsdl2-image-dev autotools-dev libtool automake --no-install-recommends -y
-    #wget -O hypseus-singe_2.8.2a_ES-DE.tar.gz https://gitlab.com/es-de/emulationstation-de/-/package_files/41533436/download
-    #tar -xvf hypseus-singe_2.8.2a_ES-DE.tar.gz -C $USER_HOME/Applications/
-    #rm $USER_HOME/hypseus-singe_2.8.2a_ES-DE.tar.gz
     git clone https://github.com/DirtBagXon/hypseus-singe.git
     cd $USER_HOME/hypseus-singe/src
     cmake .
@@ -303,6 +300,8 @@ install_hypseus_singe() {
     cp -r ../sound $USER_HOME/Applications/hypseus-singe
     cp -r ../pics $USER_HOME/Applications/hypseus-singe
     cp hypseus $USER_HOME/Applications/hypseus-singe/hypseus.bin
+	cd $USER_HOME
+	rm -rf $USER_HOME/hypseus-singe
     echo -e "FINISHED install_hypseus_singe \n\n"
 }
 
