@@ -217,8 +217,8 @@ install_retroarch() {
     echo "| Installing RetroArch"
     echo "--------------------------------------------------------------------------------"
     add-apt-repository ppa:libretro/stable -y && apt-get update && apt-get install retroarch -y
-    mkdir -p $USER_HOME/.config/retroarch/cores
-    mkdir -p $USER_HOME/.config/retroarch/assets
+    #mkdir -p $USER_HOME/.config/retroarch/cores
+    #mkdir -p $USER_HOME/.config/retroarch/assets
 	cd $USER_HOME/Downloads
     curl -o $USER_HOME/Downloads/RetroArch_cores.7z http://buildbot.libretro.com/nightly/linux/x86_64/RetroArch_cores.7z \
 	-o $USER_HOME/Downloads/assets.zip https://buildbot.libretro.com/assets/frontend/assets.zip \
@@ -235,14 +235,18 @@ install_retroarch() {
 	do
 		unzip -d "${file%.zip}" "$file"
 	done
-	#curl -o $USER_HOME/Downloads/assets.zip https://buildbot.libretro.com/assets/frontend/assets.zip
-    #curl -o $USER_HOME/Downloads/info.zip https://buildbot.libretro.com/assets/frontend/info.zip
     7z x -o$USER_HOME/Downloads $USER_HOME/Downloads/RetroArch_cores.7z
     mv -f $USER_HOME/Downloads/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores/* $USER_HOME/.config/retroarch/cores/
-    #7z x -o$USER_HOME/Downloads/assets $USER_HOME/Downloads/assets.zip
     mv -f $USER_HOME/Downloads/assets/* $USER_HOME/.config/retroarch/assets/
-    #7z x -o$USER_HOME/Downloads/info $USER_HOME/Downloads/info.zip
     mv -f $USER_HOME/Downloads/info/* $USER_HOME/.config/retroarch/cores/
+	mv -f $USER_HOME/Downloads/autoconfig/* $USER_HOME/.config/retroarch/autoconfig/
+	mv -f $USER_HOME/Downloads/cheats/* $USER_HOME/.config/retroarch/cheats/
+	mv -f $USER_HOME/Downloads/database-cursors/* $USER_HOME/.config/retroarch/database/cursors/
+	mv -f $USER_HOME/Downloads/database-rdb/* $USER_HOME/.config/retroarch/database/rdb/
+	mv -f $USER_HOME/Downloads/overlays/* $USER_HOME/.config/retroarch/overlays/
+	mv -f $USER_HOME/Downloads/shaders_cg/* $USER_HOME/.config/retroarch/shaders/shaders_cg/
+	mv -f $USER_HOME/Downloads/shaders_glsl/* $USER_HOME/.config/retroarch/shaders/shaders_glsl/
+	mv -f $USER_HOME/Downloads/shaders_slang/* $USER_HOME/.config/retroarch/shaders/shaders_slang/
     chown -R $USER:$USER $USER_HOME/.config/retroarch/
     cd $USER_HOME
     echo -e "FINISHED install_retroarch \n\n"
