@@ -152,9 +152,7 @@ install_esde() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing EmulationStation Desktop Edition"
     echo "--------------------------------------------------------------------------------"
-    APPIMAGELINK=$(curl https://gitlab.com/es-de/emulationstation-de/-/raw/master/es-app/assets/latest_steam_deck_appimage.txt | tail -1)
     mkdir -p $USER_HOME/Applications/ && cd $USER_HOME/Applications
-    #wget -O EmulationStation-DE-x64_Current.AppImage $APPIMAGELINK > /dev/null 2>&1
     wget -O EmulationStation-DE-2.0.0-alpha-2022-09-28-x64.AppImage https://gitlab.com/es-de/emulationstation-de/-/package_files/58618844/download > /dev/null 2>&1
     chmod +x *
     chown $USER:$USER *
@@ -165,10 +163,10 @@ install_esde() {
 # Configure Openbox to autostart ES-DE
 configure_openbox() {
     echo "--------------------------------------------------------------------------------"
-    echo "| Configuring Openbox to autostart ES-DE"
+    echo "| Configuring Openbox to autostart ES-DE and hide title bar"
     echo "--------------------------------------------------------------------------------"
-    mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation*.AppImage" > $USER_HOME/.config/openbox/autostart
-    cp $SCRIPT_DIR/files/rc.xml $USER_HOME/.config/openbox/rc.xml
+    #mkdir -p $USER_HOME/.config/openbox && echo "~/Applications/EmulationStation*.AppImage" > $USER_HOME/.config/openbox/autostart
+    cp -avr $SCRIPT_DIR/files/.config $USER_HOME
     chown -R $USER:$USER $USER_HOME/.config/openbox
     echo -e "FINISHED configure_openbox \n\n"
 }
