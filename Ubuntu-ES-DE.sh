@@ -252,7 +252,7 @@ install_retroarch() {
 	mv -f $USER_HOME/Downloads/cheats/* $USER_HOME/.config/retroarch/cheats/
 	mv -f $USER_HOME/Downloads/database-cursors/* $USER_HOME/.config/retroarch/database/cursors/
 	mv -f $USER_HOME/Downloads/database-rdb/* $USER_HOME/.config/retroarch/database/rdb/
-	mv -f $USER_HOME/Downloads/overlays/* $USER_HOME/.config/retroarch/overlays/
+	mv -f $USER_HOME/Downloads/overlays/* $USER_HOME/.config/retroarch/overlay/
 	mv -f $USER_HOME/Downloads/shaders_cg/* $USER_HOME/.config/retroarch/shaders/shaders_cg/
 	mv -f $USER_HOME/Downloads/shaders_glsl/* $USER_HOME/.config/retroarch/shaders/shaders_glsl/
 	mv -f $USER_HOME/Downloads/shaders_slang/* $USER_HOME/.config/retroarch/shaders/shaders_slang/
