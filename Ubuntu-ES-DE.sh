@@ -223,7 +223,7 @@ install_retroarch() {
 	mkdir -p $USER_HOME/.config/retroarch/cheats
 	mkdir -p $USER_HOME/.config/retroarch/database/cursors
 	mkdir -p $USER_HOME/.config/retroarch/database/rdb
-	mkdir -p $USER_HOME/.config/retroarch/overlays
+	mkdir -p $USER_HOME/.config/retroarch/overlay
 	mkdir -p $USER_HOME/.config/retroarch/shaders/shaders_cg
 	mkdir -p $USER_HOME/.config/retroarch/shaders/shaders_glsl
 	mkdir -p $USER_HOME/.config/retroarch/shaders/shaders_slang
