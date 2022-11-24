@@ -207,7 +207,7 @@ install_extra_tools() {
     echo "| Installing extra tools"
     echo "--------------------------------------------------------------------------------"
     apt-get install mc thunar mpv samba dos2unix git dialog htop mesa-utils xrdp x11vnc \
-	blueman net-tools --no-install-recommends -y
+	blueman net-tools inxi --no-install-recommends -y
     echo -e "FINISHED install_extra_tools \n\n"
 }
 
