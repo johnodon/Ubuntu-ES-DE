@@ -153,7 +153,9 @@ install_esde() {
     echo "| Installing EmulationStation Desktop Edition"
     echo "--------------------------------------------------------------------------------"
     mkdir -p $USER_HOME/Applications/ && cd $USER_HOME/Applications
-    wget -O EmulationStation-DE-2.0.0-beta-2023-03-05-x64.AppImage https://gitlab.com/es-de/emulationstation-de/-/package_files/70665040/download > /dev/null 2>&1
+	latestesdefilename=$(curl -s 'https://gitlab.com/es-de/emulationstation-de/-/raw/master/latest_release.json' | jq -r '.prerelease.packages[] | select(.name=="LinuxAppImage") | .filename') > /dev/null 2>&1
+	latestesdeurl=$(curl -s 'https://gitlab.com/es-de/emulationstation-de/-/raw/master/latest_release.json' | jq -r '.prerelease.packages[] | select(.name=="LinuxAppImage") | .url') > /dev/null 2>&1
+    wget -O $latestesdefilename $latestesdeurl > /dev/null 2>&1
     chmod +x *
     chown $USER:$USER *
     cd $USER_HOME
