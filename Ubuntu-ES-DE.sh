@@ -40,6 +40,7 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     install_retroarch "Install RetroArch" off \
     install_dolphin "Install Dolphin Standalone" off \
 	install_redream "Install Redream Standalone" off \
+	install_pcsx2 "Install PCSX2 Standalone" off \
     install_hypseus_singe "Install Hypseus-Singe emulator" off \
     install_steam "Install Steam" off \
     install_chrome "Install Google Chrome" off \
@@ -95,6 +96,9 @@ package_selection() {
 			;;
 		install_redream)
 			install_redream
+			;;
+		install_pcsx2)
+			install_pcsx2
 			;;
 		install_hypseus_singe)
 			install_hypseus_singe
@@ -296,6 +300,16 @@ install_redream() {
 	curl -o $USER_HOME/Downloads/redream.x86_64-linux-v1.5.0.tar.gz https://redream.io/download/redream.x86_64-linux-v1.5.0.tar.gz
 	tar -xvzf $USER_HOME/Downloads/redream.x86_64-linux-v1.5.0.tar.gz -C $USER_HOME/Applications/redream
     echo -e "FINISHED install_redream \n\n"
+}
+
+# Install PCSX2
+install_pcsx2() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing PCSX2"
+    echo "--------------------------------------------------------------------------------"
+    wget -O $USER_HOME/Applications/pcsx2-v1.7.4207-linux-AppImage-64bit-Qt.AppImage https://github.com/PCSX2/pcsx2/releases/download/v1.7.4207/pcsx2-v1.7.4207-linux-AppImage-64bit-Qt.AppImage
+	chmod +x $USER_HOME/Applications/pcsx2-v1.7.4207-linux-AppImage-64bit-Qt.AppImage
+    echo -e "FINISHED install_pcsx2 \n\n"
 }
 
 # Install Steam
