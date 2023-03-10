@@ -39,7 +39,7 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     install_extra_tools "Install extra tools" off \
     install_retroarch "Install RetroArch" off \
     install_steam "Install Steam" off \
-    install_steam "Install Google Chrome" off \
+    install_chrome "Install Google Chrome" off \
     install_hypseus_singe "Install Hypseus-Singe emulator" off \
     3>&1 1>&2 2>&3)
 response=$?
