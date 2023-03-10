@@ -26,6 +26,23 @@ if [[ "$SUDO_USER" == root ]]; then
 fi
 }
 
+# Menu to present ES-DE version installation options
+esde_menu() {
+esde_version=$(dialog --no-tags --clear --backtitle "Main Menu" --title "ES-DE Versions" \
+    --checklist "Use arrown keys to move up/down and SPACE to select/deselct packages. \
+    Select OK and press [ENTER] when finished. \
+    Select CANCEL and press [ENTER] to terminate the script" 30 100 30 \
+    esde_stable "Install latest stable release of ES-DE" on \
+	esde_prerelease "Install latest pre-release of ES-DE" on \
+    3>&1 1>&2 2>&3)
+esde_response=$?
+if [ "$esde_response" == "1" ] ; then
+    clear
+    echo "Installation cancelled by user."
+    exit
+fi
+}
+
 # Menu to present installation options
 main_menu() {
 PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Packages" \
