@@ -158,6 +158,7 @@ install_flatpak_hub() {
     echo "--------------------------------------------------------------------------------"
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     echo -e "FINISHED install_flatpak_hub \n\n"
+}
 
 # Install EmulationStation Desktop Edition
 install_esde() {
