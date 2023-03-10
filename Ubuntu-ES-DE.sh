@@ -70,43 +70,43 @@ enable_logging() {
 
 # Readout package selections
 package_selection() {
-    for SELECTION in $PACKAGES; do
-        case $SELECTION in
-        initial_install)
-            initial_install
-            ;;
-        install_intel_driver)
-            install_intel_driver
-            ;;
-        install_nvidia_driver)
-            install_nvidia_driver
-            ;;
-        install_mesa)
-            install_mesa
-            ;;
-        install_extra_tools)
-            install_extra_tools
-            ;;
-        install_retroarch)
-            install_retroarch
-            ;;
-        install_dolphin)
-            install_dolphin
-            ;;
-        install_redream)
-            install_redream
-            ;;
+	for SELECTION in $PACKAGES; do
+		case $SELECTION in
+		initial_install)
+			initial_install
+			;;
+		install_intel_driver)
+			install_intel_driver
+			;;
+		install_nvidia_driver)
+			install_nvidia_driver
+			;;
+		install_mesa)
+			install_mesa
+			;;
+		install_extra_tools)
+			install_extra_tools
+			;;
+		install_retroarch)
+			install_retroarch
+			;;
+		install_dolphin)
+			install_dolphin
+			;;
+		install_redream)
+			install_redream
+			;;
 		install_hypseus_singe)
-            install_hypseus_singe
-            ;;
+			install_hypseus_singe
+			;;
 		install_steam)
-            install_steam
-            ;;
-        install_chrome)
-            install_chrome
-            ;;
-     esac
-     done
+			install_steam
+			;;
+		install_chrome)
+			install_chrome
+			;;
+		esac
+	done
  }
 
 # Create file in sudoers.d directory and disable password prompt
