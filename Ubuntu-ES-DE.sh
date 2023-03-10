@@ -38,6 +38,7 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     install_mesa "Install latest version of Mesa" off \
     install_extra_tools "Install extra tools" off \
     install_retroarch "Install RetroArch" off \
+    install_dolphin "Install Dolphin Standalone" off \
     install_steam "Install Steam" off \
     install_chrome "Install Google Chrome" off \
     install_hypseus_singe "Install Hypseus-Singe emulator" off \
@@ -88,7 +89,10 @@ package_selection() {
         install_retroarch)
             install_retroarch
             ;;
-        install_steam)
+        install_dolphin)
+            install_dolphin
+            ;;
+		install_steam)
             install_steam
             ;;
         install_chrome)
@@ -142,10 +146,18 @@ install_dependencies() {
     echo "--------------------------------------------------------------------------------"
     echo "| Installing dependencies"
     echo "--------------------------------------------------------------------------------"
-    apt-get install openbox obconf unzip xmlstarlet scrot openssh-server fuse3 curl p7zip-full jq --no-install-recommends -y
+    apt-get install openbox obconf unzip xmlstarlet scrot openssh-server fuse3 curl p7zip-full jq flatpak gnome-software-plugin-flatpak --no-install-recommends -y
     echo -e "FINISHED install_dependencies \n\n"
     sleep 2
 }
+
+# Install Flatpak Hub
+install_flatpak_hub() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing Flatpak Hub"
+    echo "--------------------------------------------------------------------------------"
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    echo -e "FINISHED install_flatpak_hub \n\n"
 
 # Install EmulationStation Desktop Edition
 install_esde() {
@@ -261,6 +273,15 @@ install_retroarch() {
     echo -e "FINISHED install_retroarch \n\n"
 }
 
+# Install Dolphin
+install_dolphin() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing Dolphin"
+    echo "--------------------------------------------------------------------------------"
+    flatpak install flathub org.DolphinEmu.dolphin-emu -y
+    echo -e "FINISHED install_dolphin \n\n"
+}
+
 # Install Steam
 install_steam() {
     echo "--------------------------------------------------------------------------------"
@@ -365,6 +386,7 @@ initial_install() {
     update_upgrade
     hide_boot_messages
     install_dependencies
+	install_flatpak_hub
     install_esde
     configure_openbox
 }
