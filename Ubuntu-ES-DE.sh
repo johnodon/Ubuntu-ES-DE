@@ -367,6 +367,7 @@ remove_unneeded_packages() {
     echo "--------------------------------------------------------------------------------"
     apt-get update && apt-get -y upgrade
     apt-get -y autoremove
+	rm -rf $USER_HOME/Downloads/*
     echo -e "FINISHED remove_unneeded_packages \n\n"
     sleep 2
 }
