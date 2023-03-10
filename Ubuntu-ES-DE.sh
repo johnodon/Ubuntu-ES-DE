@@ -294,7 +294,7 @@ install_redream() {
     echo "--------------------------------------------------------------------------------"
     mkdir -p $USER_HOME/Applications/redream
 	curl -o $USER_HOME/Downloads/redream.x86_64-linux-v1.5.0.tar.gz https://redream.io/download/redream.x86_64-linux-v1.5.0.tar.gz
-	tar -xvzf $USER_HOME/Downloads/redream.x86_64-linux-v1.5.0-1051-g4ba6a39.tar.gz -C $USER_HOME/Applications/redream
+	tar -xvzf $USER_HOME/Downloads/redream.x86_64-linux-v1.5.0.tar.gz -C $USER_HOME/Applications/redream
     echo -e "FINISHED install_redream \n\n"
 }
 
