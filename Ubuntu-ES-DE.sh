@@ -40,9 +40,9 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     install_retroarch "Install RetroArch" off \
     install_dolphin "Install Dolphin Standalone" off \
 	install_redream "Install Redream Standalone" off \
+    install_hypseus_singe "Install Hypseus-Singe emulator" off \
     install_steam "Install Steam" off \
     install_chrome "Install Google Chrome" off \
-    install_hypseus_singe "Install Hypseus-Singe emulator" off \
     3>&1 1>&2 2>&3)
 response=$?
 if [ "$response" == "1" ] ; then
@@ -96,14 +96,14 @@ package_selection() {
         install_redream)
             install_redream
             ;;
+		install_hypseus_singe)
+            install_hypseus_singe
+            ;;
 		install_steam)
             install_steam
             ;;
         install_chrome)
             install_chrome
-            ;;
-        install_hypseus_singe)
-            install_hypseus_singe
             ;;
      esac
      done
