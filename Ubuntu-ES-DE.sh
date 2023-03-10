@@ -39,6 +39,7 @@ PACKAGES=$(dialog --no-tags --clear --backtitle "Main Menu" --title "Optional Pa
     install_extra_tools "Install extra tools" off \
     install_retroarch "Install RetroArch" off \
     install_dolphin "Install Dolphin Standalone" off \
+	install_redream "Install Redream Standalone" off \
     install_steam "Install Steam" off \
     install_chrome "Install Google Chrome" off \
     install_hypseus_singe "Install Hypseus-Singe emulator" off \
@@ -91,6 +92,9 @@ package_selection() {
             ;;
         install_dolphin)
             install_dolphin
+            ;;
+        install_redream)
+            install_redream
             ;;
 		install_steam)
             install_steam
@@ -281,6 +285,17 @@ install_dolphin() {
     echo "--------------------------------------------------------------------------------"
     flatpak install flathub org.DolphinEmu.dolphin-emu -y
     echo -e "FINISHED install_dolphin \n\n"
+}
+
+# Install Redream
+install_redream() {
+    echo "--------------------------------------------------------------------------------"
+    echo "| Installing Redream"
+    echo "--------------------------------------------------------------------------------"
+    mkdir -p $USER_HOME/Applications/redream
+	curl -o $USER_HOME/Downloads/redream.x86_64-linux-v1.5.0.tar.gz https://redream.io/download/redream.x86_64-linux-v1.5.0.tar.gz
+	tar -xvzf $USER_HOME/Downloads/redream.x86_64-linux-v1.5.0-1051-g4ba6a39.tar.gz -C $USER_HOME/Applications/redream
+    echo -e "FINISHED install_redream \n\n"
 }
 
 # Install Steam
